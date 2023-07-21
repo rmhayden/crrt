@@ -5,13 +5,14 @@ GAME CHOICE:
 
 
  RATIONALE / PURPOSE:
+>> ###
+
+
+GAME SET UP:
 >> 
 
 
-WIREFRAME:
+WIREFRAME / PSEUDOCODE:
+>> https://robscontent.com/crrt_wireframe.pdf
 
-
-
-
-PSEUDOCODE:
 
