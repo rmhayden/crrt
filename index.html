@@ -23,11 +23,39 @@
         </section>
 
         <section class="side-button-container">
-            <button class="order-crrt">Order CRRT</button>
+            
+    
+            <fieldset id="replacement-fluid-rate-radio">
+                <legend>Select Replacement Fluid Rate</legend>
+                    <div>
+                        <input type="radio" id="0RFR" name="RFR" value ="0">
+                        <label for="0RFR">0</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="1600RFR" name="RFR" value ="1600">
+                        <label for="1600RFR">1600</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="2400RFR" name="RFR" value ="2400">
+                        <label for="2400RFR">2400</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="3200RFR" name="RFR" value ="3200">
+                        <label for="3200RFR">3200</label>
+                    </div>
+
+                <button class="update-order-button" type="button">Update Order</button>
+        
+
+            </fieldset>
+
+            <div id="replacement-fluid-rate"></div>
 
         </section>
 
         <section class="lower-button-container">
+
+            <button class="start">Start</button>
 
         </section>
 

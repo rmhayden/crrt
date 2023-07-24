@@ -1,7 +1,7 @@
 
 * {
     box-sizing: border-box;
-    /* border: 1px solid red; */
+    border: .05px solid red;
     gap: 5px;
 }
 
@@ -20,6 +20,7 @@
 
 .side-button-container {
     grid-area: side-button-container;
+    width: 250px;
 }
 
 .lower-button-container {
@@ -29,4 +30,13 @@
 .central-container {
     grid-area: central-container;
 
+}
+
+
+input {
+    margin: 0.4rem;
+}
+
+.start {
+    visibility: visible;
 }

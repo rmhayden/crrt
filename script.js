@@ -19,6 +19,9 @@ let allLabValues = {
     bicarb: []
 }
 
+
+
+
 let potassiumClearanceValue = 2
 // will later model this accurately; for now, will score 1-3 based on Rx
 // for now, will just set 4 as lower limit (or zero, if zeroK)
@@ -33,13 +36,24 @@ let bicarbClearanceValue = 2
 const potassiumEl = document.querySelector('.potassium')
 const bicarbEl  = document.querySelector('.bicarb')
 
+// ### need to cach the RFR value!
 
+const startBtnEl = document.querySelector('.start')
+const updateOrderBtnEl = document.querySelector('.update-order-button')
 
 /*----- EVENT LISTENERS -----*/
+
+startBtnEl.addEventListener('click', handleStartClick)
+updateOrderBtnEl.addEventListener('click', displayRFRValue)
 
 
 /*----- FUNCTIONS -----*/
 
+
+function handleStartClick() {
+    init()
+    document.querySelector('.start').style.display="none"
+}
 
 function init() {
 
@@ -111,7 +125,7 @@ function toxinClearance() {
 }
 
 
-function potassiumClearance () {
+function potassiumClearance() {
  // this will be run after user clicks "sign orders" button
     if (currentLabValues.potassium > 4 && potassiumClearanceValue === 1) {
         currentLabValues.potassium -= 1
@@ -120,7 +134,7 @@ function potassiumClearance () {
     }
 }
 
-function bicarbClearance () {
+function bicarbClearance() {
     // this will be run after user clicks "sign orders" button
        if (currentLabValues.bicarb < 24 && bicarbClearanceValue === 1) {
             currentLabValues.bicarb += 4
@@ -128,4 +142,19 @@ function bicarbClearance () {
             currentLabValues.bicarb += 8
        }
    }
+
+
+    function displayRFRValue() {
+        // SRC: https://www.geeksforgeeks.org/how-to-get-value-of-selected-radio-button-using-javascript/
+        document.getElementById("replacement-fluid-rate").innerHTML = "";
+        let ele = document.getElementsByTagName('input');
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].type = "radio") {
+                if (ele[i].checked) 
+                    document.getElementById("replacement-fluid-rate").innerHTML
+                        += ele[i].name + " Value: "
+                        + ele[i].value + "<br>";
+            }
+        }
+    }
 
