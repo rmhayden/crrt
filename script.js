@@ -27,14 +27,12 @@ let bicarbClearanceValue = 2
 // will later model this accurately; for now, will score 1-3 based on Rx
 
 
+
 /*----- CACHED ELEMENTS  -----*/
 
+const potassiumEl = document.querySelector('.potassium')
+const bicarbEl  = document.querySelector('.bicarb')
 
-const allLabValueEls = {
-    potassiumEl: []
-
-}
-// these have to be an array so we can add to it
 
 
 /*----- EVENT LISTENERS -----*/
@@ -51,23 +49,30 @@ function init() {
     cycles = 0 // starts at zero
 
     render()
-    continueGame()
+    // continueGame() - don't need this another time in init() function
 }
 
 
 function render() {
     // this may be best included for DOM only? ###
     appendNewLabValues()
+    renderAllLabValues()
 }
 
 
 function appendNewLabValues() {
     for (let key in allLabValues) {
-        allLabValues[key].push((`${currentLabValues[key]}`))
-        // console.log(`${allLabValues[key]}`)
+        allLabValues[key].push((`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${currentLabValues[key]}`))
+        console.log(`${allLabValues[key]}    `)
         }   
     }
 
+function renderAllLabValues() {
+
+    potassiumEl.innerHTML = `Potassium: ${allLabValues.potassium}`
+    bicarbEl.innerHTML = `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bicarb: ${allLabValues.bicarb}`
+
+}
 
 function continueGame(){
     // mirrored the function we used in the Tamagotchi game
@@ -86,6 +91,7 @@ function nextInterval() {
     toxinAccumulation()
     toxinClearance()
     console.log("Next Interval")
+    render()
 }
 
 
@@ -97,7 +103,6 @@ function gameOver() {
 function toxinAccumulation() {
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
-    console.log(currentLabValues)
 }
 
 function toxinClearance() {
