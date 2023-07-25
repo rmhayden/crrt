@@ -90,7 +90,7 @@ updateOrderBtnEl.addEventListener('click', updateRFRValue)
 
 function handleStartClick() {
     init()
-    document.querySelector('.start').style.display="none"
+    startBtnEl.setAttribute("disabled", "true");
 }
 
 function init() {

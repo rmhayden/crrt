@@ -1,9 +1,18 @@
 
 * {
     box-sizing: border-box;
-    border: .05px solid red;
+    /* border: .05px solid red; */
     /* gap: 5px; */
+    font-family: Arial, Helvetica, sans-serif
+}
 
+.outermost-container {
+    height: 100px;
+}
+
+.title {
+    margin-left: 20px;
+    color: navy;
 }
 
 .main-container {
@@ -23,12 +32,16 @@
 
 .side-button-container {
     grid-area: side-button-container;
+    border: .05px solid green;
+    background-color: rgb(189, 200, 217);
+    padding: 15px;
 }
 
 .lower-button-container {
     grid-area: lower-button-container;
     display: flex;
-
+    border: .05px solid rgb(39, 26, 159);
+    background-color: rgb(131, 124, 136);
     column-gap: 20px;
 }
 
@@ -36,6 +49,7 @@
     grid-area: central-container;
     display: flex;
     flex-direction: column;
+    background-color: rgb(226, 231, 226);
 }
     
 
@@ -43,6 +57,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    border: .05px solid rgb(62, 15, 162);
 }
 
 .virtual-patient-container {
@@ -75,6 +90,28 @@
     margin-right: auto
 }
 
+#replacement-fluid-rate-radio {
+    margin: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    border-color: black;
+
+}
+
+.update-order-button {
+    cursor: pointer;
+    height: 30px;
+    margin: 4px;
+    background-color: rgb(171, 171, 198);
+    color: rgb(33, 32, 32);
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 10px;
+
+
+}
+
 /* will add these back in later */
 
 /* .patient-container {
@@ -90,7 +127,6 @@
 } */
 
 
-
 input {
     margin: 0.4rem;
 }
@@ -98,19 +134,30 @@ input {
 .start-button-container {
     display: flex;
     align-items: center;
-    
 }
 
 .start {
-    visibility: visible;
     height: 50px;
     width: 100px;
     margin: 10px;
-    
+    background-color: rgb(26, 26, 143);
+    color: white;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
 }
 
+.start:hover {
+    background-color: rgb(44, 44, 126);
+    cursor: pointer;
+}
 
-/* need to make the flex column format so things align */
+.start[disabled="true"] {
+    background-color: lightblue;
+    cursor: not-allowed;
+} 
+
 
 .timer-container {
     display: flex;
