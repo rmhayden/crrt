@@ -2,34 +2,42 @@
 * {
     box-sizing: border-box;
     border: .05px solid red;
-    gap: 5px;
+    /* gap: 5px; */
+
 }
 
 .main-container {
+    margin: 25px;
     display: grid;
-    height: 500px;
+    height: 600px;
     grid-template-columns: auto;
     grid-template-rows: auto;
     grid-template-areas:
-        "side-button-container central-container central-container central-container ."
-        "side-button-container central-container central-container central-container ."
-        "side-button-container central-container central-container central-container ."
-        "side-button-container central-container central-container central-container ."
-        "lower-button-container lower-button-container lower-button-container lower-button-container .";
+        "side-button-container central-container central-container central-container"
+        "side-button-container central-container central-container central-container"
+        "side-button-container central-container central-container central-container"
+        "side-button-container central-container central-container central-container"
+        "lower-button-container lower-button-container lower-button-container lower-button-container";
 }
 
 .side-button-container {
     grid-area: side-button-container;
-    width: 250px;
+    /* width: 250px; */
 }
 
 .lower-button-container {
     grid-area: lower-button-container;
+    /* width: 1000px; */
 }
 
 .central-container {
+    /* width: 750px; */
     grid-area: central-container;
 
+}
+
+.labs-container {
+    justify-content: flex-start;
 }
 
 
@@ -39,4 +47,10 @@ input {
 
 .start {
     visibility: visible;
+}
+
+.potassium-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
