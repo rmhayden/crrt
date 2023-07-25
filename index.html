@@ -14,28 +14,67 @@
         <section class="central-container">
 
             <section class="data-container">
-                <section class="labs-container">
-                    <div class="potassium-container">
-                        <h4>Potassium:</h4>
+
+                    <div class="data-labels-container">
+                        <h4>Time Interval</h4>
+                        <h4>Potassium</h4>
+                    </div>
+                    <div class="0hr-container">
+                        <h5>0hr</h5>
                         <h4 class="potassium1">_</h4>
+                    </div>
+                    <div class="4hr-container">
+                        <h5>4hr</h5>
                         <h4 class="potassium2">_</h4>
+                    </div>
+                    <div class="8hr-container">
+                        <h5>8hr</h5>
                         <h4 class="potassium3">_</h4>
+                    </div>
+                    <div class="12hr-container">
+                        <h5>12hr</h5>
                         <h4 class="potassium4">_</h4>
+                    </div>
+                    <div class="16hr-container">
+                        <h5>16hr</h5>
                         <h4 class="potassium5">_</h4>
+                    </div>
+                    <div class="20hr-container">
+                        <h5>20hr</h5>
                         <h4 class="potassium6">_</h4>
                     </div>
+            
+                
+            </section>
 
-                        <h4 class="potassium">Potassium:</h4>
+            <section class="virtual-patient-container">
 
-                        <h4 class="bicarb">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bicarb:</h4>
-                </section>
+                <!-- <div class="crrt-patient-container"> -->
+                    <div class="iframe-container">
+                        <iframe id="iframe"  src="https://renalprimers.com/crrt.html"></iframe>
+                    </div>
+                <!-- </div> -->
+
+                <!-- ### to do - make these interchangeable based on phenotype -->
+                <!-- <div class="patient-container">
+                    <p>patient will go here</p>
+                </div>
+
+                <div class="hemodynamic-container">
+                    <p>monitor will go here</p>
+                </div>
+
+                <div class="vent-container">
+                    <p>vent will go here</p>
+                </div>
+                 -->
+
             </section>
 
         </section>
 
         <section class="side-button-container">
             
-    
             <fieldset id="replacement-fluid-rate-radio">
                 <legend>Select Replacement Fluid Rate</legend>
                     <div>
@@ -64,9 +103,15 @@
 
         <section class="lower-button-container">
 
-            <button class="start">Start</button>
+            <div class="start-button-container">
+                <button class="start">Start</button>
+            </div>
+            
 
-            <p id="timerDisplay">10</p>
+            <div class="timer-container">
+                <h3>Countdown Until <br> Next Interval</h3>
+                <h2 id="timerDisplay">10</h2>
+            </div>
 
         </section>
 

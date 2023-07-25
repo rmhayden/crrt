@@ -17,41 +17,105 @@
         "side-button-container central-container central-container central-container"
         "side-button-container central-container central-container central-container"
         "side-button-container central-container central-container central-container"
+        "side-button-container central-container central-container central-container"
         "lower-button-container lower-button-container lower-button-container lower-button-container";
 }
 
 .side-button-container {
     grid-area: side-button-container;
-    /* width: 250px; */
 }
 
 .lower-button-container {
     grid-area: lower-button-container;
-    /* width: 1000px; */
     display: flex;
+
+    column-gap: 20px;
 }
 
 .central-container {
-    /* width: 750px; */
     grid-area: central-container;
+    display: flex;
+    flex-direction: column;
+}
+    
 
+.data-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.labs-container {
-    justify-content: flex-start;
+.virtual-patient-container {
+    display: grid;
+    flex-grow: 2;
+    box-sizing: border-box;
+    height: auto;
+    border: .05px solid green;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "crrt-patient-container"
 }
+
+.crrt-patient-container {
+    grid-area: crrt-patient-container;
+    height: 100%;
+    align-items: center;
+}
+
+.iframe-container {
+    display: flex;
+}
+
+#iframe {
+    width: 100%;
+    display: flex;
+    padding: 10px 0px 10px 0px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/* will add these back in later */
+
+/* .patient-container {
+    grid-area: patient-container
+}
+
+.hemodynamic-container {
+    grid-area: hemodynamic-container
+}
+
+.vent-container {
+    grid-area: vent-container
+} */
+
 
 
 input {
     margin: 0.4rem;
 }
 
-.start {
-    visibility: visible;
+.start-button-container {
+    display: flex;
+    align-items: center;
+    
 }
 
-.potassium-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+.start {
+    visibility: visible;
+    height: 50px;
+    width: 100px;
+    margin: 10px;
+    
 }
+
+
+/* need to make the flex column format so things align */
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+}
+
