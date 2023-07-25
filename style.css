@@ -28,6 +28,7 @@
 .lower-button-container {
     grid-area: lower-button-container;
     /* width: 1000px; */
+    display: flex;
 }
 
 .central-container {

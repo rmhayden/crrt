@@ -3,10 +3,19 @@
 
 /*----- CONSTANTS -----*/
 
+const timerDisplayEl = document.querySelector("#timerDisplay")
 
 
 
 /*----- STATE VARIABLES -----*/
+
+
+let timer = null;
+let timer2 = null;
+let timer2Value = 10;
+
+let interval = 10000;
+let interval2 = 1000;
 
 let alive = 1
 // 1 is alive, zero is dead
@@ -86,8 +95,9 @@ function handleStartClick() {
 
 function init() {
 
-    interval = 3000 // one minute is a cycle ### To do: make timer animation
+    // interval = 6000 // one minute is a cycle ### To do: make timer animation
     timer = setInterval(continueGame, interval)
+    timer2 = setInterval(decrementCount, interval2)
         // mirrored the function we used in the Tamagotchi game
     cycles = 0 // starts at zero
 
@@ -146,6 +156,28 @@ function renderAllLabValues() {
 }
 
 
+function decrementCount() {
+    if(timer2Value>0) {
+        timer2Value --;
+     renderClock(); 
+    } else {
+        // clearInterval(timer2) // this would make it stop running
+        // resetClock()
+    }
+}
+
+function renderClock() {
+    timerDisplayEl.textContent = timer2Value;
+}
+
+function resetClock() {
+    setTimeout(()=>{
+        timer2Value = 8
+        timer2 = null
+        renderClock();
+    }, 1000)
+}
+
 function continueGame(){
     // mirrored the function we used in the Tamagotchi game
     let lastCycle = cycles
@@ -155,6 +187,7 @@ function continueGame(){
     if (lastCycle < cycles) {
     // nextInterval()
     goToNextOrEndGame()
+    resetClock()
     console.log(lastCycle)
     }
 }
@@ -167,16 +200,26 @@ function goToNextOrEndGame() {
 
 function nextInterval() {
     // either time or button event triggers next interval
+    if (alive == 1) {
     potassiumClearanceValueModulation()
     toxinAccumulation()
     toxinClearance()
     console.log("Next Interval")
+    metabolicPhenotypeValues()
+    console.log("metabolic phenotype: " + metabolicPhenotype)
+    console.log("current potassium: " + roundedCurrentLabValues.potassium)
+    aliveOrDead()
+    console.log("alive: " + alive)
     render()
+    } else if (alive == 0) {
+        gameOver()
+    }
 }
 
 
 function gameOver() {
   console.log("Game Over!")
+  alert("game over")
 }
 
 
@@ -251,7 +294,6 @@ function updateRFRValue() {
         }
     } 
 }
-
 
 function aliveOrDead() {
     if (metabolicPhenotype <3 && hemodynamicPhenotype <3 && respiratoryPhenotype <3) {
