@@ -8,11 +8,28 @@
 
 /*----- STATE VARIABLES -----*/
 
+let alive = 1
+// 1 is alive, zero is dead
+
+let metabolicPhenotype = 1
+
+let respiratoryPhenotype = 1
+
+let hemodynamicPhenotype = 1
+
+let globalReplacementFluidRateValue 
 
 let currentLabValues = {
-    potassium: 7,
+    potassium: 7.2,
     bicarb: 20
 }
+
+
+let roundedCurrentLabValues = {
+    potassium: [],
+    bicarb: []
+}
+
 
 //to do ### for let to round this^ ?
 
@@ -22,13 +39,17 @@ let allLabValues = {
     bicarb: []
 }
 
+let clearanceValues = {
+    potassium: 0,
+    bicarb: 0
+}
 
-let potassiumClearanceValue = 2
-// will later model this accurately; for now, will score 1-3 based on Rx
-// for now, will just set 4 as lower limit (or zero, if zeroK)
+// let potassiumClearanceValue = 0
+// // will later model this accurately; for now, will score 1-3 based on Rx
+// // for now, will just set 4 as lower limit (or zero, if zeroK)
 
-let bicarbClearanceValue = 2
-// will later model this accurately; for now, will score 1-3 based on Rx
+// let bicarbClearanceValue = 0
+// // will later model this accurately; for now, will score 1-3 based on Rx
 
 
 
@@ -56,9 +77,7 @@ const updateOrderBtnEl = document.querySelector('.update-order-button')
 startBtnEl.addEventListener('click', handleStartClick)
 updateOrderBtnEl.addEventListener('click', updateRFRValue)
 
-
 /*----- FUNCTIONS -----*/
-
 
 function handleStartClick() {
     init()
@@ -67,7 +86,7 @@ function handleStartClick() {
 
 function init() {
 
-    interval = 2000 // one minute is a cycle ### To do: make timer animation
+    interval = 3000 // one minute is a cycle ### To do: make timer animation
     timer = setInterval(continueGame, interval)
         // mirrored the function we used in the Tamagotchi game
     cycles = 0 // starts at zero
@@ -78,7 +97,7 @@ function init() {
 
 
 function render() {
-    // this may be best included for DOM only? ###
+    roundPotassium()
     appendNewLabValues()
     renderAllLabValues()
 }
@@ -86,17 +105,15 @@ function render() {
 
 function appendNewLabValues() {
     for (let key in allLabValues) {
-        allLabValues[key].push((`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${currentLabValues[key]}`))
+        allLabValues[key].push((`${roundedCurrentLabValues[key]}`))
         // console.log(`${allLabValues[key]}`)
         }   
-    }
+}
 
 function renderAllLabValues() {
 
-        potassiumEl.innerHTML = `&nbsp;${allLabValues.potassium}`
-        bicarbEl.innerHTML = `${allLabValues.bicarb}`
-
-    
+        // potassiumEl.innerHTML = `&nbsp;${allLabValues.potassium}`
+        // bicarbEl.innerHTML = `${allLabValues.bicarb}`
 
     if (cycles === 0) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
@@ -145,12 +162,12 @@ function continueGame(){
 function goToNextOrEndGame() {
     if (cycles <= 5) {
         nextInterval()
-    } else gameOver()
-
+    } else { gameOver()}
 }
 
 function nextInterval() {
     // either time or button event triggers next interval
+    potassiumClearanceValueModulation()
     toxinAccumulation()
     toxinClearance()
     console.log("Next Interval")
@@ -169,48 +186,66 @@ function toxinAccumulation() {
 }
 
 function toxinClearance() {
-    potassiumClearance()
+    runPotassiumClearance()
     bicarbClearance()
 }
 
+function roundPotassium() {
+    roundedCurrentLabValues.potassium = currentLabValues.potassium.toFixed(1)
+} // we only want this in the rendering output, not under the hood
+
+
+
+function runPotassiumClearance() {
+    if (allLabValues.potassium[allLabValues.potassium.length - 1] < 4.5) { return
+    } else if (allLabValues.potassium[allLabValues.potassium.length - 1] >= 4.5) {
+        potassiumClearance() }
+}
 
 function potassiumClearance() {
  // this will be run after user clicks "sign orders" button
-    if (currentLabValues.potassium > 4 && potassiumClearanceValue === 1) {
-        currentLabValues.potassium -= 1
-    } else if (currentLabValues.potassium > 4 && potassiumClearanceValue === 2) {
+    if (currentLabValues.potassium < 4.5) { return 
+    } else if (clearanceValues.potassium == 1) {
+        currentLabValues.potassium -= 1.5
+    } else if (clearanceValues.potassium == 2) {
         currentLabValues.potassium -= 2
-    }
+    }  else if (clearanceValues.potassium == 3) {
+        currentLabValues.potassium -= 2.5}
+    // later will need to change this when we have zeroK replacement fluid involved
 }
 
+
 function potassiumClearanceValueModulation() {
-    if (replacementFluidRateValue = 0) {
-        potassiumClearanceValue = 0
-    } else if (replacementFluidRateValue = 1600) {
-        potassiumClearanceValue = 1
-    } else if (replacementFluidRateValue = 2400) {
-    potassiumClearanceValue = 2
-    } else if (replacementFluidRateValue = 3200) {
-        potassiumClearanceValue = 3}
-} // ### this needs to be activated
+    if (globalReplacementFluidRateValue == 0) {
+        clearanceValues.potassium = 0
+    } else if (globalReplacementFluidRateValue == 1600) {
+        clearanceValues.potassium = 1
+    } else if (globalReplacementFluidRateValue == 2400) {
+        clearanceValues.potassium = 2
+    } else if (globalReplacementFluidRateValue == 3200) {
+        clearanceValues.potassium = 3}
+} 
+
+// needs to be activated
 
 function bicarbClearance() {
     // this will be run after user clicks "sign orders" button
-       if (currentLabValues.bicarb < 24 && bicarbClearanceValue === 1) {
-            currentLabValues.bicarb += 4
-       } else if (currentLabValues.bicarb < 24 && bicarbClearanceValue === 2) {
-            currentLabValues.bicarb += 8
+       if (currentLabValues.bicarb < 24 && clearanceValues.bicarb === 1) {
+        clearanceValues.bicarb += 4
+       } else if (currentLabValues.bicarb < 24 && clearanceValues.bicarb === 2) {
+        clearanceValues.bicarb += 8
        }
 }
 
 
-function updateRFRValue () {
+function updateRFRValue() {
   // SRC: https://www.geeksforgeeks.org/how-to-get-value-of-selected-radio-button-using-javascript/
     document.getElementById("replacement-fluid-rate").innerHTML = "";
     let el = document.getElementsByTagName('input');
     for (i = 0; i < el.length; i++) {
         if (el[i].checked) {
             replacementFluidRateValue = el[i].value
+            globalReplacementFluidRateValue = replacementFluidRateValue
             // console.log(replacementFluidRateValue)
             document.getElementById("replacement-fluid-rate").innerHTML = `Replacement Fluid Rate: ${replacementFluidRateValue}`
         }
@@ -218,7 +253,16 @@ function updateRFRValue () {
 }
 
 
-function round (num) {
-    return num.toFixed(1)
-} // may need this later to round the lab values
+function aliveOrDead() {
+    if (metabolicPhenotype <3 && hemodynamicPhenotype <3 && respiratoryPhenotype <3) {
+    alive = 1
+    } else {alive = 0}
+} // need to call ###
 
+function metabolicPhenotypeValues() {
+    if (roundedCurrentLabValues.potassium >= 7.5) {
+        metabolicPhenotype = 3
+    } else if (roundedCurrentLabValues.potassium >= 6.5) {
+        metabolicPhenotype = 2
+    } else {metabolicPhenotype = 1}
+} // need to call ###
