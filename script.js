@@ -5,10 +5,10 @@
 
 const timerDisplayEl = document.querySelector("#timerDisplay")
 
+const currentTimeIntervalEl = document.querySelector("#cyclesDisplay")
 
 
 /*----- STATE VARIABLES -----*/
-
 
 let timer = null;
 let timer2 = null;
@@ -125,26 +125,32 @@ function renderAllLabValues() {
         // potassiumEl.innerHTML = `&nbsp;${allLabValues.potassium}`
         // bicarbEl.innerHTML = `${allLabValues.bicarb}`
 
+
     if (cycles === 0) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
+        currentTimeIntervalEl.innerHTML = `0hr`
     } else if (cycles === 1) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
+        currentTimeIntervalEl.innerHTML = `4hr`
     } else if (cycles === 2) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
         potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
+        currentTimeIntervalEl.innerHTML = `8hr`
     } else if (cycles === 3) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
         potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
         potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
+        currentTimeIntervalEl.innerHTML = `12hr`
     } else if (cycles === 4) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
         potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
         potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
         potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
+        currentTimeIntervalEl.innerHTML = `16hr`
     } else if (cycles === 5) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
@@ -152,6 +158,7 @@ function renderAllLabValues() {
         potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
         potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
         potassiumEl6.innerHTML = `${allLabValues.potassium[5]}`
+        currentTimeIntervalEl.innerHTML = `20hr`
     } // perhaps if made this an object could use iterative process to make drier
 }
 
@@ -308,3 +315,6 @@ function metabolicPhenotypeValues() {
         metabolicPhenotype = 2
     } else {metabolicPhenotype = 1}
 } // need to call ###
+
+
+

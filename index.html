@@ -22,32 +22,39 @@
             <section class="data-container">
 
                     <div class="data-labels-container">
-                        <h4>Time Interval</h4>
+                        <h3>Time Interval</h3>
                         <h4>Potassium</h4>
+                        <h4>Phosphorus</h4>
                     </div>
                     <div class="0hr-container">
                         <h5>0hr</h5>
                         <h4 class="potassium1">_</h4>
+                        <h4 class="phos1">_</h4>
                     </div>
                     <div class="4hr-container">
                         <h5>4hr</h5>
                         <h4 class="potassium2">_</h4>
+                        <h4 class="phos2">_</h4>
                     </div>
                     <div class="8hr-container">
                         <h5>8hr</h5>
                         <h4 class="potassium3">_</h4>
+                        <h4 class="phos3">_</h4>
                     </div>
                     <div class="12hr-container">
                         <h5>12hr</h5>
                         <h4 class="potassium4">_</h4>
+                        <h4 class="phos4">_</h4>
                     </div>
                     <div class="16hr-container">
                         <h5>16hr</h5>
                         <h4 class="potassium5">_</h4>
+                        <h4 class="phos5">_</h4>
                     </div>
                     <div class="20hr-container">
                         <h5>20hr</h5>
                         <h4 class="potassium6">_</h4>
+                        <h4 class="phos6">_</h4>
                     </div>
             
                 
@@ -82,6 +89,15 @@
         <section class="side-button-container">
 
             <h3>CRRT Prescription Settings</h3>
+
+            <fieldset id="replacement-fluid-type">
+                <legend>Select Replacement Fluid Type</legend>
+                <section id="RFT-buttons-container">
+                    <button class="button-Prismasol-0K" type="button">Prismasol 0K, 2.5Ca, 0Phos</button>
+                    <button class="button-Prismasol-4K" type="button">Prismasol 4K, 2.5Ca, 0Phos</button>
+                    <button class="button-Phoxillum" type="button">Phoxillum 4K, 2.5Ca, 1Phos</button>
+                </section>
+            </fieldset>
             
             <fieldset id="replacement-fluid-rate-radio">
                 <legend>Select Replacement Fluid Rate</legend>
@@ -108,19 +124,23 @@
 
             <div id="replacement-fluid-rate"></div>
 
-
         </section>
 
         <section class="lower-button-container">
 
             <div class="start-button-container">
-                <button class="start">Start</button>
+                <button class="start">Start Simulation</button>
             </div>
             
 
             <div class="timer-container">
                 <h3>Countdown Until <br> Next Interval</h3>
                 <h2 id="timerDisplay">10</h2>
+            </div>
+
+            <div class="timer-container">
+                <h3>Current <br> Time Interval</h3>
+                <h2 id="cyclesDisplay">0hr</h2>
             </div>
 
         </section>
