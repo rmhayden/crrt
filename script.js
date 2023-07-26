@@ -32,24 +32,36 @@ let globalReplacementFluidRateValue
 let currentLabValues = {
     potassium: 7.2,
     bicarb: 20,
-    phos: 3.1
+    phos: 3.1,
+    fourHrFluidIn: 600,
+    fourHrUltrafiltration: 0,
+    netFluids: 600,
+    pressors: 1,
+    fio2: 0.3
 }
 
 
 let roundedCurrentLabValues = {
     potassium: [],
     bicarb: [],
-    phos: []
+    phos: [],
+    fourHrFluidIn: [],
+    fourHrUltrafiltration: [],
+    netFluids: [],
+    pressors: [],
+    fio2: []
 }
-
-
-//to do ### for let to round this^ ?
 
 
 let allLabValues = {
     potassium: [],
     bicarb: [],
-    phos: []
+    phos: [],
+    fourHrFluidIn: [],
+    fourHrUltrafiltration: [],
+    netFluids: [],
+    pressors: [],
+    fio2: []
 }
 
 let clearanceValues = {
@@ -78,6 +90,27 @@ const phosEl3 = document.querySelector('.phos3')
 const phosEl4 = document.querySelector('.phos4')
 const phosEl5 = document.querySelector('.phos5')
 const phosEl6 = document.querySelector('.phos6')
+
+const fluidsInEl1 = document.querySelector('.in1')
+const fluidsInEl2 = document.querySelector('.in2')
+const fluidsInEl3 = document.querySelector('.in3')
+const fluidsInEl4 = document.querySelector('.in4')
+const fluidsInEl5 = document.querySelector('.in5')
+const fluidsInEl6 = document.querySelector('.in6')
+
+const fluidsOutEl1 = document.querySelector('.out1')
+const fluidsOutEl2 = document.querySelector('.out2')
+const fluidsOutEl3 = document.querySelector('.out3')
+const fluidsOutEl4 = document.querySelector('.out4')
+const fluidsOutEl5 = document.querySelector('.out5')
+const fluidsOutEl6 = document.querySelector('.out6')
+
+const fluidsNetEl1 = document.querySelector('.net1')
+const fluidsNetEl2 = document.querySelector('.net2')
+const fluidsNetEl3 = document.querySelector('.net3')
+const fluidsNetEl4 = document.querySelector('.net4')
+const fluidsNetEl5 = document.querySelector('.net5')
+const fluidsNetEl6 = document.querySelector('.net6')
 
 let replacementFluidRateValue
 
@@ -177,59 +210,123 @@ function appendNewLabValues() {
 function renderAllLabValues() {
 
     if (cycles === 0) {
-        potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         currentTimeIntervalEl.innerHTML = `0hr`
-        phosEl1.innerHTML = `${allLabValues.phos[0]}`
+            potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
+                phosEl1.innerHTML = `${allLabValues.phos[0]}`
+                    fluidsInEl1.innerHTML = `${allLabValues.fourHrFluidIn[0]}`
+                        fluidsOutEl1.innerHTML = `${allLabValues.fourHrUltrafiltration[0]}`
+                            fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
     } else if (cycles === 1) {
-        potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
-        potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
         currentTimeIntervalEl.innerHTML = `4hr`
-        phosEl1.innerHTML = `${allLabValues.phos[0]}`
-        phosEl2.innerHTML = `${allLabValues.phos[1]}`
+            potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
+            potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
+                phosEl1.innerHTML = `${allLabValues.phos[0]}`
+                phosEl2.innerHTML = `${allLabValues.phos[1]}`
+                    fluidsInEl1.innerHTML = `${allLabValues.fourHrFluidIn[0]}`
+                    fluidsInEl2.innerHTML = `${allLabValues.fourHrFluidIn[1]}`
+                        fluidsOutEl1.innerHTML = `${allLabValues.fourHrUltrafiltration[0]}`
+                        fluidsOutEl2.innerHTML = `${allLabValues.fourHrUltrafiltration[1]}`
+                            fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
+                            fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
+
     } else if (cycles === 2) {
-        potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
-        potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
-        potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
         currentTimeIntervalEl.innerHTML = `8hr`
-        phosEl1.innerHTML = `${allLabValues.phos[0]}`
-        phosEl2.innerHTML = `${allLabValues.phos[1]}`
-        phosEl3.innerHTML = `${allLabValues.phos[2]}`
+            potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
+            potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
+            potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
+                phosEl1.innerHTML = `${allLabValues.phos[0]}`
+                phosEl2.innerHTML = `${allLabValues.phos[1]}`
+                phosEl3.innerHTML = `${allLabValues.phos[2]}`
+                    fluidsInEl1.innerHTML = `${allLabValues.fourHrFluidIn[0]}`
+                    fluidsInEl2.innerHTML = `${allLabValues.fourHrFluidIn[1]}`
+                    fluidsInEl3.innerHTML = `${allLabValues.fourHrFluidIn[2]}`
+                        fluidsOutEl1.innerHTML = `${allLabValues.fourHrUltrafiltration[0]}`
+                        fluidsOutEl2.innerHTML = `${allLabValues.fourHrUltrafiltration[1]}`
+                        fluidsOutEl3.innerHTML = `${allLabValues.fourHrUltrafiltration[2]}`
+                            fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
+                            fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
+                            fluidsNetEl3.innerHTML = `${allLabValues.netFluids[2]}`
     } else if (cycles === 3) {
-        potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
-        potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
-        potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
-        potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
         currentTimeIntervalEl.innerHTML = `12hr`
-        phosEl1.innerHTML = `${allLabValues.phos[0]}`
-        phosEl2.innerHTML = `${allLabValues.phos[1]}`
-        phosEl3.innerHTML = `${allLabValues.phos[2]}`
-        phosEl4.innerHTML = `${allLabValues.phos[3]}`
+            potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
+            potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
+            potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
+            potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
+                phosEl1.innerHTML = `${allLabValues.phos[0]}`
+                phosEl2.innerHTML = `${allLabValues.phos[1]}`
+                phosEl3.innerHTML = `${allLabValues.phos[2]}`
+                phosEl4.innerHTML = `${allLabValues.phos[3]}`
+                    fluidsInEl1.innerHTML = `${allLabValues.fourHrFluidIn[0]}`
+                    fluidsInEl2.innerHTML = `${allLabValues.fourHrFluidIn[1]}`
+                    fluidsInEl3.innerHTML = `${allLabValues.fourHrFluidIn[2]}`
+                    fluidsInEl4.innerHTML = `${allLabValues.fourHrFluidIn[3]}`
+                        fluidsOutEl1.innerHTML = `${allLabValues.fourHrUltrafiltration[0]}`
+                        fluidsOutEl2.innerHTML = `${allLabValues.fourHrUltrafiltration[1]}`
+                        fluidsOutEl3.innerHTML = `${allLabValues.fourHrUltrafiltration[2]}`
+                        fluidsOutEl4.innerHTML = `${allLabValues.fourHrUltrafiltration[3]}`
+                            fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
+                            fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
+                            fluidsNetEl3.innerHTML = `${allLabValues.netFluids[2]}`
+                            fluidsNetEl4.innerHTML = `${allLabValues.netFluids[3]}`
     } else if (cycles === 4) {
-        potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
-        potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
-        potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
-        potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
-        potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
         currentTimeIntervalEl.innerHTML = `16hr`
-        phosEl1.innerHTML = `${allLabValues.phos[0]}`
-        phosEl2.innerHTML = `${allLabValues.phos[1]}`
-        phosEl3.innerHTML = `${allLabValues.phos[2]}`
-        phosEl4.innerHTML = `${allLabValues.phos[3]}`
-        phosEl5.innerHTML = `${allLabValues.phos[4]}`
+            potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
+            potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
+            potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
+            potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
+            potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
+                phosEl1.innerHTML = `${allLabValues.phos[0]}`
+                phosEl2.innerHTML = `${allLabValues.phos[1]}`
+                phosEl3.innerHTML = `${allLabValues.phos[2]}`
+                phosEl4.innerHTML = `${allLabValues.phos[3]}`
+                phosEl5.innerHTML = `${allLabValues.phos[4]}`
+                    fluidsInEl1.innerHTML = `${allLabValues.fourHrFluidIn[0]}`
+                    fluidsInEl2.innerHTML = `${allLabValues.fourHrFluidIn[1]}`
+                    fluidsInEl3.innerHTML = `${allLabValues.fourHrFluidIn[2]}`
+                    fluidsInEl4.innerHTML = `${allLabValues.fourHrFluidIn[3]}`
+                    fluidsInEl5.innerHTML = `${allLabValues.fourHrFluidIn[4]}`
+                        fluidsOutEl1.innerHTML = `${allLabValues.fourHrUltrafiltration[0]}`
+                        fluidsOutEl2.innerHTML = `${allLabValues.fourHrUltrafiltration[1]}`
+                        fluidsOutEl3.innerHTML = `${allLabValues.fourHrUltrafiltration[2]}`
+                        fluidsOutEl4.innerHTML = `${allLabValues.fourHrUltrafiltration[3]}`
+                        fluidsOutEl5.innerHTML = `${allLabValues.fourHrUltrafiltration[4]}`
+                            fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
+                            fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
+                            fluidsNetEl3.innerHTML = `${allLabValues.netFluids[2]}`
+                            fluidsNetEl4.innerHTML = `${allLabValues.netFluids[3]}`
+                            fluidsNetEl5.innerHTML = `${allLabValues.netFluids[4]}`
     } else if (cycles === 5) {
-        potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
-        potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
-        potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
-        potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
-        potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
-        potassiumEl6.innerHTML = `${allLabValues.potassium[5]}`
         currentTimeIntervalEl.innerHTML = `20hr`
-        phosEl1.innerHTML = `${allLabValues.phos[0]}`
-        phosEl2.innerHTML = `${allLabValues.phos[1]}`
-        phosEl3.innerHTML = `${allLabValues.phos[2]}`
-        phosEl4.innerHTML = `${allLabValues.phos[3]}`
-        phosEl5.innerHTML = `${allLabValues.phos[4]}`
-        phosEl6.innerHTML = `${allLabValues.phos[5]}`
+            potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
+            potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
+            potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
+            potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
+            potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
+            potassiumEl6.innerHTML = `${allLabValues.potassium[5]}`
+                phosEl1.innerHTML = `${allLabValues.phos[0]}`
+                phosEl2.innerHTML = `${allLabValues.phos[1]}`
+                phosEl3.innerHTML = `${allLabValues.phos[2]}`
+                phosEl4.innerHTML = `${allLabValues.phos[3]}`
+                phosEl5.innerHTML = `${allLabValues.phos[4]}`
+                phosEl6.innerHTML = `${allLabValues.phos[5]}`
+                    fluidsInEl1.innerHTML = `${allLabValues.fourHrFluidIn[0]}`
+                    fluidsInEl2.innerHTML = `${allLabValues.fourHrFluidIn[1]}`
+                    fluidsInEl3.innerHTML = `${allLabValues.fourHrFluidIn[2]}`
+                    fluidsInEl4.innerHTML = `${allLabValues.fourHrFluidIn[3]}`
+                    fluidsInEl5.innerHTML = `${allLabValues.fourHrFluidIn[4]}`
+                    fluidsInEl6.innerHTML = `${allLabValues.fourHrFluidIn[5]}`
+                        fluidsOutEl1.innerHTML = `${allLabValues.fourHrUltrafiltration[0]}`
+                        fluidsOutEl2.innerHTML = `${allLabValues.fourHrUltrafiltration[1]}`
+                        fluidsOutEl3.innerHTML = `${allLabValues.fourHrUltrafiltration[2]}`
+                        fluidsOutEl4.innerHTML = `${allLabValues.fourHrUltrafiltration[3]}`
+                        fluidsOutEl5.innerHTML = `${allLabValues.fourHrUltrafiltration[4]}`
+                        fluidsOutEl6.innerHTML = `${allLabValues.fourHrUltrafiltration[5]}`
+                            fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
+                            fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
+                            fluidsNetEl3.innerHTML = `${allLabValues.netFluids[2]}`
+                            fluidsNetEl4.innerHTML = `${allLabValues.netFluids[3]}`
+                            fluidsNetEl5.innerHTML = `${allLabValues.netFluids[4]}`
+                            fluidsNetEl6.innerHTML = `${allLabValues.netFluids[5]}`
     } // perhaps if made this an object could use iterative process to make drier
 }
 
@@ -319,7 +416,10 @@ function toxinAccumulation() {
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
     currentLabValues.phos += 0.5
+    currentLabValues.fourHrUltrafiltration = convertedUltrafiltrationRate*4
+    currentLabValues.netFluids = currentLabValues.fourHrFluidIn - currentLabValues.fourHrUltrafiltration
 }
+
 
 function toxinClearance() {
     runPotassiumClearance()
@@ -333,7 +433,10 @@ function roundPotassium() {
 
 function roundPhos() {
     roundedCurrentLabValues.phos = currentLabValues.phos.toFixed(1)
-} // we only want this in the rendering output, not under the hood
+    roundedCurrentLabValues.fourHrFluidIn = currentLabValues.fourHrFluidIn.toFixed(0)
+    roundedCurrentLabValues.fourHrUltrafiltration = currentLabValues.fourHrUltrafiltration.toFixed(0)
+    roundedCurrentLabValues.netFluids = currentLabValues.netFluids.toFixed(0)
+} // for now this function is named roundPhos but is applied to all other values
 
 
 function runPotassiumClearance() {
