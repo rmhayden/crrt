@@ -99,6 +99,7 @@
 
 
 .update-order-button {
+    visibility: hidden;
     cursor: pointer;
     height: 30px;
     margin: 4px;
@@ -142,6 +143,11 @@
     font-size: 15px;
     border-radius: 10px;
 }
+
+#RFT-buttons-container > button[disabled="true"] {
+    background-color: lightblue;
+    cursor: not-allowed;
+} 
 
 
 /* will add these back in later */

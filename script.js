@@ -1,6 +1,4 @@
 
-
-
 /*----- CONSTANTS -----*/
 
 const timerDisplayEl = document.querySelector("#timerDisplay")
@@ -20,6 +18,9 @@ let interval2 = 1000;
 let alive = 1
 // 1 is alive, zero is dead
 
+let isRfNotZeroK = true
+let isRfNotZeroPhos = true
+
 let metabolicPhenotype = 1
 
 let respiratoryPhenotype = 1
@@ -30,13 +31,15 @@ let globalReplacementFluidRateValue
 
 let currentLabValues = {
     potassium: 7.2,
-    bicarb: 20
+    bicarb: 20,
+    phos: 6.2
 }
 
 
 let roundedCurrentLabValues = {
     potassium: [],
-    bicarb: []
+    bicarb: [],
+    phos: []
 }
 
 
@@ -45,12 +48,14 @@ let roundedCurrentLabValues = {
 
 let allLabValues = {
     potassium: [],
-    bicarb: []
+    bicarb: [],
+    phos: []
 }
 
 let clearanceValues = {
     potassium: 0,
-    bicarb: 0
+    bicarb: 0,
+    phos: 0
 }
 
 // let potassiumClearanceValue = 0
@@ -75,16 +80,31 @@ const potassiumEl4 = document.querySelector('.potassium4')
 const potassiumEl5 = document.querySelector('.potassium5')
 const potassiumEl6 = document.querySelector('.potassium6')
 
+const phosEl1 = document.querySelector('.phos1')
+const phosEl2 = document.querySelector('.phos2')
+const phosEl3 = document.querySelector('.phos3')
+const phosEl4 = document.querySelector('.phos4')
+const phosEl5 = document.querySelector('.phos5')
+const phosEl6 = document.querySelector('.phos6')
+
 let replacementFluidRateValue
 
 const startBtnEl = document.querySelector('.start')
 const updateOrderBtnEl = document.querySelector('.update-order-button')
+
+const btnPrismasol0kEl = document.querySelector(".button-Prismasol-0K")
+const btnPrismasol4kEl = document.querySelector(".button-Prismasol-4K")
+const btnPhoxillumEl = document.querySelector(".button-Phoxillum")
 
 
 /*----- EVENT LISTENERS -----*/
 
 startBtnEl.addEventListener('click', handleStartClick)
 updateOrderBtnEl.addEventListener('click', updateRFRValue)
+
+btnPrismasol0kEl.addEventListener('click', initiatePrismasol0k)
+btnPrismasol4kEl.addEventListener('click', initiatePrismasol4k)
+btnPhoxillumEl.addEventListener('click', initiatePhoxillum)
 
 /*----- FUNCTIONS -----*/
 
@@ -108,6 +128,7 @@ function init() {
 
 function render() {
     roundPotassium()
+    roundPhos()
     appendNewLabValues()
     renderAllLabValues()
 }
@@ -122,28 +143,34 @@ function appendNewLabValues() {
 
 function renderAllLabValues() {
 
-        // potassiumEl.innerHTML = `&nbsp;${allLabValues.potassium}`
-        // bicarbEl.innerHTML = `${allLabValues.bicarb}`
-
-
     if (cycles === 0) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         currentTimeIntervalEl.innerHTML = `0hr`
+        phosEl1.innerHTML = `${allLabValues.phos[0]}`
     } else if (cycles === 1) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
         currentTimeIntervalEl.innerHTML = `4hr`
+        phosEl1.innerHTML = `${allLabValues.phos[0]}`
+        phosEl2.innerHTML = `${allLabValues.phos[1]}`
     } else if (cycles === 2) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
         potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
         currentTimeIntervalEl.innerHTML = `8hr`
+        phosEl1.innerHTML = `${allLabValues.phos[0]}`
+        phosEl2.innerHTML = `${allLabValues.phos[1]}`
+        phosEl3.innerHTML = `${allLabValues.phos[2]}`
     } else if (cycles === 3) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
         potassiumEl3.innerHTML = `${allLabValues.potassium[2]}`
         potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
         currentTimeIntervalEl.innerHTML = `12hr`
+        phosEl1.innerHTML = `${allLabValues.phos[0]}`
+        phosEl2.innerHTML = `${allLabValues.phos[1]}`
+        phosEl3.innerHTML = `${allLabValues.phos[2]}`
+        phosEl4.innerHTML = `${allLabValues.phos[3]}`
     } else if (cycles === 4) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
@@ -151,6 +178,11 @@ function renderAllLabValues() {
         potassiumEl4.innerHTML = `${allLabValues.potassium[3]}`
         potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
         currentTimeIntervalEl.innerHTML = `16hr`
+        phosEl1.innerHTML = `${allLabValues.phos[0]}`
+        phosEl2.innerHTML = `${allLabValues.phos[1]}`
+        phosEl3.innerHTML = `${allLabValues.phos[2]}`
+        phosEl4.innerHTML = `${allLabValues.phos[3]}`
+        phosEl5.innerHTML = `${allLabValues.phos[4]}`
     } else if (cycles === 5) {
         potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
         potassiumEl2.innerHTML = `${allLabValues.potassium[1]}`
@@ -159,6 +191,12 @@ function renderAllLabValues() {
         potassiumEl5.innerHTML = `${allLabValues.potassium[4]}`
         potassiumEl6.innerHTML = `${allLabValues.potassium[5]}`
         currentTimeIntervalEl.innerHTML = `20hr`
+        phosEl1.innerHTML = `${allLabValues.phos[0]}`
+        phosEl2.innerHTML = `${allLabValues.phos[1]}`
+        phosEl3.innerHTML = `${allLabValues.phos[2]}`
+        phosEl4.innerHTML = `${allLabValues.phos[3]}`
+        phosEl5.innerHTML = `${allLabValues.phos[4]}`
+        phosEl6.innerHTML = `${allLabValues.phos[5]}`
     } // perhaps if made this an object could use iterative process to make drier
 }
 
@@ -213,8 +251,10 @@ function nextInterval() {
     toxinClearance()
     console.log("Next Interval")
     metabolicPhenotypeValues()
+    respiratoryPhenotypeValues()
     console.log("metabolic phenotype: " + metabolicPhenotype)
     console.log("current potassium: " + roundedCurrentLabValues.potassium)
+    console.log("current phos: " + roundedCurrentLabValues.phos)
     aliveOrDead()
     console.log("alive: " + alive)
     render()
@@ -233,10 +273,12 @@ function gameOver() {
 function toxinAccumulation() {
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
+    currentLabValues.phos += 0.4
 }
 
 function toxinClearance() {
     runPotassiumClearance()
+    runPhosClearance()
     bicarbClearance()
 }
 
@@ -244,39 +286,43 @@ function roundPotassium() {
     roundedCurrentLabValues.potassium = currentLabValues.potassium.toFixed(1)
 } // we only want this in the rendering output, not under the hood
 
+function roundPhos() {
+    roundedCurrentLabValues.phos = currentLabValues.phos.toFixed(1)
+} // we only want this in the rendering output, not under the hood
 
 
 function runPotassiumClearance() {
-    if (allLabValues.potassium[allLabValues.potassium.length - 1] < 4.5) { return
-    } else if (allLabValues.potassium[allLabValues.potassium.length - 1] >= 4.5) {
-        potassiumClearance() }
+    if (allLabValues.potassium[allLabValues.potassium.length - 1] < 4.5 && isRfNotZeroK) { return
+    } else { potassiumClearance() }
 }
 
+
+
 function potassiumClearance() {
- // this will be run after user clicks "sign orders" button
-    if (currentLabValues.potassium < 4.5) { return 
-    } else if (clearanceValues.potassium == 1) {
+    if (clearanceValues.potassium == 1) {
         currentLabValues.potassium -= 1.5
     } else if (clearanceValues.potassium == 2) {
         currentLabValues.potassium -= 2
     }  else if (clearanceValues.potassium == 3) {
         currentLabValues.potassium -= 2.5}
-    // later will need to change this when we have zeroK replacement fluid involved
 }
 
 
 function potassiumClearanceValueModulation() {
+
     if (globalReplacementFluidRateValue == 0) {
         clearanceValues.potassium = 0
+        clearanceValues.phos = 0
     } else if (globalReplacementFluidRateValue == 1600) {
         clearanceValues.potassium = 1
+        clearanceValues.phos = 1
     } else if (globalReplacementFluidRateValue == 2400) {
         clearanceValues.potassium = 2
+        clearanceValues.phos = 2
     } else if (globalReplacementFluidRateValue == 3200) {
-        clearanceValues.potassium = 3}
+        clearanceValues.potassium = 3
+        clearanceValues.phos = 3}
 } 
-
-// needs to be activated
 
 function bicarbClearance() {
     // this will be run after user clicks "sign orders" button
@@ -286,6 +332,25 @@ function bicarbClearance() {
         clearanceValues.bicarb += 8
        }
 }
+
+
+function runPhosClearance() {
+    if (allLabValues.phos[allLabValues.phos.length - 1] < 4.1 && isRfNotZeroPhos) { return
+    } else { phosClearance() }
+}
+
+function phosClearance() {
+    // ### need to write this out too
+    // console.log("phos clearance function running")
+
+    if (clearanceValues.phos == 1) {
+        currentLabValues.phos -= 0.4
+    } else if (clearanceValues.phos == 2) {
+        currentLabValues.phos -= 0.9
+    }  else if (clearanceValues.phos == 3) {
+        currentLabValues.phos -= 1.3}
+    }
+
 
 
 function updateRFRValue() {
@@ -302,19 +367,65 @@ function updateRFRValue() {
     } 
 }
 
+function initiatePrismasol0k () {
+    updateOrderBtnEl.style.visibility = "visible";
+    isRfNotZeroK = false;
+    isRfNotZeroPhos = false;
+    // console.log("prismasol0k")
+    btnPrismasol0kEl.setAttribute("disabled", "true");
+    btnPrismasol4kEl.removeAttribute("disabled", "true");
+    btnPrismasol4kEl.setAttribute("enabled", "true");
+    btnPhoxillumEl.removeAttribute("disabled", "true");
+    btnPhoxillumEl.setAttribute("enabled", "true");
+    // need to add effect of into K/Phos handling functions
+}
+
+function initiatePrismasol4k () {
+    updateOrderBtnEl.style.visibility = "visible";
+    isRfNotZeroK = true;
+    isRfNotZeroPhos = false;
+    // console.log("prismasol4k")
+    btnPrismasol0kEl.removeAttribute("disabled", "true");
+    btnPrismasol0kEl.setAttribute("enabled", "true");
+    btnPrismasol4kEl.setAttribute("disabled", "true");
+    btnPhoxillumEl.removeAttribute("disabled", "true");
+    btnPhoxillumEl.setAttribute("enabled", "true");
+    // need to add effect of into K/Phos handling functions
+}
+
+function initiatePhoxillum () {
+    updateOrderBtnEl.style.visibility = "visible";
+    isRfNotZeroK = true;
+    isRfNotZeroPhos = true;
+    // console.log("phoxillum")
+    btnPrismasol0kEl.removeAttribute("disabled", "true");
+    btnPrismasol0kEl.setAttribute("enabled", "true");
+    btnPrismasol4kEl.removeAttribute("disabled", "true");
+    btnPrismasol4kEl.setAttribute("enabled", "true");
+    btnPhoxillumEl.setAttribute("disabled", "true");
+    // need to add effect of into K/Phos handling functions
+
+}
+
+
 function aliveOrDead() {
     if (metabolicPhenotype <3 && hemodynamicPhenotype <3 && respiratoryPhenotype <3) {
     alive = 1
     } else {alive = 0}
-} // need to call ###
+} 
 
 function metabolicPhenotypeValues() {
-    if (roundedCurrentLabValues.potassium >= 7.5) {
+    if (roundedCurrentLabValues.potassium <= 2.5) {
+        metabolicPhenotype = 3
+    } else if (roundedCurrentLabValues.potassium >= 7.5) {
         metabolicPhenotype = 3
     } else if (roundedCurrentLabValues.potassium >= 6.5) {
         metabolicPhenotype = 2
     } else {metabolicPhenotype = 1}
-} // need to call ###
+} 
 
-
-
+function respiratoryPhenotypeValues() {
+    if (roundedCurrentLabValues.phos < 1.5) {
+        respiratoryPhenotype = 3
+    } 
+}
