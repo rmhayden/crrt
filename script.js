@@ -84,6 +84,8 @@ let replacementFluidRateValue
 const startBtnEl = document.querySelector('.start')
 const updateOrderBtnEl = document.querySelector('.update-order-button')
 
+const disappearingRadioButtonsContainerEl = document.querySelector(".disappearing-container-radio-buttons")
+
 const btnPrismasol0kEl = document.querySelector(".button-Prismasol-0K")
 const btnPrismasol4kEl = document.querySelector(".button-Prismasol-4K")
 const btnPhoxillumEl = document.querySelector(".button-Phoxillum")
@@ -100,15 +102,8 @@ const instructionsEl = document.querySelector(".modal-instructions")
 const btnCloseInstructions = document.querySelector(".button-close-instructions-modal")
 const btnOpenInstructions = document.querySelector(".open-instructions")
 
-
-const btnUpdateUFRateEl = document.querySelector(".update-ultrafiltration-button")
-
 let ultrafiltrationRateEl = document.getElementById("myUfRange")
- 
-let actualUltrafiltrationRate 
-
-let ultrafiltrationRateDisplayEl = document.querySelector(".ultrafiltration-rate")
-
+let convertedUltrafiltrationRate
 let sliderUfRate = document.querySelector(".slider-ultrafiltration-rate")
 
 /*----- EVENT LISTENERS -----*/
@@ -126,10 +121,9 @@ btnRefreshPage.addEventListener('click', refreshPage)
 btnCloseInstructions.addEventListener('click', closeInstructions)
 btnOpenInstructions.addEventListener('click', openInstructions)
 
-btnUpdateUFRateEl.addEventListener('click', updateUfOrder)
-
 ultrafiltrationRateEl.oninput = function() {
-    sliderUfRate.innerHTML = this.value*10;
+    convertedUltrafiltrationRate = this.value*10;
+    sliderUfRate.innerHTML = `Ultrafiltration Rate: ${convertedUltrafiltrationRate}`
 }
 
 /*----- FUNCTIONS -----*/
@@ -151,21 +145,6 @@ function handleStartClick() {
     startBtnEl.setAttribute("disabled", "true");
 }
 
-function updateUfOrder() {
-    let defaultVal
-    let currentVal
-    let unconvertedUltrafiltrationRate
-
-    defaultVal = ultrafiltrationRateEl.defaultValue;
-    currentVal = ultrafiltrationRateEl.value;
-    console.log(defaultVal)
-    console.log(currentVal)
-
-    unconvertedUltrafiltrationRate = currentVal
-    convertedUltrafiltrationRate = unconvertedUltrafiltrationRate*10
-    console.log(convertedUltrafiltrationRate)
-    ultrafiltrationRateDisplayEl.innerHTML = `Ultrafiltration Rate: ${convertedUltrafiltrationRate}`
-}
 
 function init() {
 
@@ -435,6 +414,7 @@ function updateRFRValue() {
 
 function initiatePrismasol0k () {
     updateOrderBtnEl.style.visibility = "visible";
+    disappearingRadioButtonsContainerEl.style.visibility = "visible";
     isRfNotZeroK = false;
     isRfNotZeroPhos = false;
     // console.log("prismasol0k")
@@ -448,6 +428,7 @@ function initiatePrismasol0k () {
 
 function initiatePrismasol4k () {
     updateOrderBtnEl.style.visibility = "visible";
+    disappearingRadioButtonsContainerEl.style.visibility = "visible";
     isRfNotZeroK = true;
     isRfNotZeroPhos = false;
     // console.log("prismasol4k")
@@ -461,6 +442,7 @@ function initiatePrismasol4k () {
 
 function initiatePhoxillum () {
     updateOrderBtnEl.style.visibility = "visible";
+    disappearingRadioButtonsContainerEl.style.visibility = "visible";
     isRfNotZeroK = true;
     isRfNotZeroPhos = true;
     // console.log("phoxillum")
