@@ -4,10 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRRT Virtual Patient Simulation</title>
+
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+
 </head>
 <body>
+
+    
+    <div id="modal-start-page-id" class="modal-start-page">
+        <!-- Modal content -->
+    
+        <div class="modal-start-page-content">
+            <!-- <span class="close">&times;</span> -->
+            <h3>Game Start Modal</h3>
+            <button class="button-begin-modal">Enter Simulation</button>
+        </div>
+      </div>
+    
+      <div id="modal-game-over-id" class="modal-game-over">
+    
+        <div class="modal-game-over-content">
+          <h4>Game Over</h4>
+          <h5 id="feedback">feedback</h5>
+          <button class="button-refresh-page">Play Simulation Again</button>
+        </div>
+      </div>
+
+      <div id="modal-instructions-id" class="modal-instructions">
+    
+        <div class="modal-instructions-content">
+          <h4>Instructions</h4>
+          <h5 id="feedback">instructions</h5>
+          <button class="button-close-instructions-modal">Return to Simulation</button>
+        </div>
+      </div>
+
 
 <main class="outermost-container">
 
@@ -132,6 +164,9 @@
                 <button class="start">Start Simulation</button>
             </div>
             
+            <div class="instructions-button-container">
+                <button class="open-instructions">Review Instructions</button>
+            </div>
 
             <div class="timer-container">
                 <h3>Countdown Until <br> Next Interval</h3>

@@ -32,7 +32,7 @@ let globalReplacementFluidRateValue
 let currentLabValues = {
     potassium: 7.2,
     bicarb: 20,
-    phos: 6.2
+    phos: 3.1
 }
 
 
@@ -57,14 +57,6 @@ let clearanceValues = {
     bicarb: 0,
     phos: 0
 }
-
-// let potassiumClearanceValue = 0
-// // will later model this accurately; for now, will score 1-3 based on Rx
-// // for now, will just set 4 as lower limit (or zero, if zeroK)
-
-// let bicarbClearanceValue = 0
-// // will later model this accurately; for now, will score 1-3 based on Rx
-
 
 
 /*----- CACHED ELEMENTS  -----*/
@@ -96,6 +88,18 @@ const btnPrismasol0kEl = document.querySelector(".button-Prismasol-0K")
 const btnPrismasol4kEl = document.querySelector(".button-Prismasol-4K")
 const btnPhoxillumEl = document.querySelector(".button-Phoxillum")
 
+const btnBeginModal = document.querySelector(".button-begin-modal")
+const beginModal = document.querySelector(".modal-start-page")
+
+const btnRefreshPage = document.querySelector(".button-refresh-page")
+const gameOverModal = document.querySelector(".modal-game-over")
+
+const gameOverFeedback = document.querySelector("#feedback")
+
+const instructionsEl = document.querySelector(".modal-instructions")
+const btnCloseInstructions = document.querySelector(".button-close-instructions-modal")
+const btnOpenInstructions = document.querySelector(".open-instructions")
+
 
 /*----- EVENT LISTENERS -----*/
 
@@ -106,7 +110,25 @@ btnPrismasol0kEl.addEventListener('click', initiatePrismasol0k)
 btnPrismasol4kEl.addEventListener('click', initiatePrismasol4k)
 btnPhoxillumEl.addEventListener('click', initiatePhoxillum)
 
+btnBeginModal.addEventListener('click', closeBeginModal)
+btnRefreshPage.addEventListener('click', refreshPage)
+
+btnCloseInstructions.addEventListener('click', closeInstructions)
+btnOpenInstructions.addEventListener('click', openInstructions)
+
 /*----- FUNCTIONS -----*/
+
+function closeBeginModal() {
+    beginModal.style.display = "none";
+}
+
+function closeInstructions() {
+    instructionsEl.style.display = "none";
+}
+
+function openInstructions() {
+    instructionsEl.style.display = "block";
+}
 
 function handleStartClick() {
     init()
@@ -265,15 +287,27 @@ function nextInterval() {
 
 
 function gameOver() {
-  console.log("Game Over!")
-  alert("game over")
+
+    gameOverModal.style.display = "block";
+
+  if (alive == 1) {
+    gameOverFeedback.innerHTML = "Patient Survived!"
+  } else if (metabolicPhenotype == 3 && roundedCurrentLabValues.potassium <= 2.5) {
+    gameOverFeedback.innerHTML = "The patient died of hypokalemia. Be highly cautious when using a 0K replacement fluid"
+  } else if (metabolicPhenotype == 3 && roundedCurrentLabValues.potassium >= 7.5) {
+    gameOverFeedback.innerHTML = "The patient died of hyperkalemia. A 0K replacement fluid and/or higher replacement fluid rate may have been better optimized"
+  } else if (respiratoryPhenotype == 3 && roundedCurrentLabValues.phos < 1.5) {
+    gameOverFeedback.innerHTML = "The patient died of hypophosphatemia. Be cautious when using a 0Phos replacement fluid"}
 }
 
+function refreshPage() {
+    location.reload()
+}
 
 function toxinAccumulation() {
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
-    currentLabValues.phos += 0.4
+    currentLabValues.phos += 0.5
 }
 
 function toxinClearance() {
