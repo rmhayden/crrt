@@ -6,6 +6,12 @@
     font-family: Arial, Helvetica, sans-serif
 }
 
+body {
+    border: 10px solid blue;
+    margin: 0px;
+    min-height: 100vh;
+}
+
 .outermost-container {
     height: 100px;
 }
@@ -350,4 +356,10 @@ input {
   .button-refresh-page:hover {
     background-color: rgb(240, 240, 250);
     cursor: pointer;
+}
+
+
+.slider-ultrafiltration-rate-container {
+    display: inline;
+    padding: 10px;
 }

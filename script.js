@@ -101,6 +101,16 @@ const btnCloseInstructions = document.querySelector(".button-close-instructions-
 const btnOpenInstructions = document.querySelector(".open-instructions")
 
 
+const btnUpdateUFRateEl = document.querySelector(".update-ultrafiltration-button")
+
+let ultrafiltrationRateEl = document.getElementById("myUfRange")
+ 
+let actualUltrafiltrationRate 
+
+let ultrafiltrationRateDisplayEl = document.querySelector(".ultrafiltration-rate")
+
+let sliderUfRate = document.querySelector(".slider-ultrafiltration-rate")
+
 /*----- EVENT LISTENERS -----*/
 
 startBtnEl.addEventListener('click', handleStartClick)
@@ -115,6 +125,12 @@ btnRefreshPage.addEventListener('click', refreshPage)
 
 btnCloseInstructions.addEventListener('click', closeInstructions)
 btnOpenInstructions.addEventListener('click', openInstructions)
+
+btnUpdateUFRateEl.addEventListener('click', updateUfOrder)
+
+ultrafiltrationRateEl.oninput = function() {
+    sliderUfRate.innerHTML = this.value*10;
+}
 
 /*----- FUNCTIONS -----*/
 
@@ -133,6 +149,22 @@ function openInstructions() {
 function handleStartClick() {
     init()
     startBtnEl.setAttribute("disabled", "true");
+}
+
+function updateUfOrder() {
+    let defaultVal
+    let currentVal
+    let unconvertedUltrafiltrationRate
+
+    defaultVal = ultrafiltrationRateEl.defaultValue;
+    currentVal = ultrafiltrationRateEl.value;
+    console.log(defaultVal)
+    console.log(currentVal)
+
+    unconvertedUltrafiltrationRate = currentVal
+    convertedUltrafiltrationRate = unconvertedUltrafiltrationRate*10
+    console.log(convertedUltrafiltrationRate)
+    ultrafiltrationRateDisplayEl.innerHTML = `Ultrafiltration Rate: ${convertedUltrafiltrationRate}`
 }
 
 function init() {
