@@ -7,8 +7,6 @@ RATIONALE / PURPOSE:
 >> this virtual patient simulation game will help doctors learn the principles of how to manage continuous renal replacement therapy (CRRT) in the intensive care unit
 >> specific learning goals: 1. learn how to prescribe CRRT and then see how the replacement fluid choice and rate both influence metabolic parameters 2. observe and manage the balance of fluid removal with CRRT (to improve repsiratory status) and hemodynamics. 3. 
 
-[!] IMPORTANT: the nephrology division in the hospital where I work as a kidney doctor, which fully funded this bootcamp for me and has given me the 12 weeks protected time away from hospital duties, would like me to present this deliverable to them on August 1st to be used for educational purposes
-
 
 GAME SET UP:
 >> VIRTUAL PATIENT SIMULATOR - control the CVVH prescription over time; react appropriately to changes in critically ill patient

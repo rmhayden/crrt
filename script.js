@@ -1,12 +1,8 @@
 
-/*----- CONSTANTS -----*/
+/*----- CONSTANTS AND STATE VARIABLES -----*/
 
 const timerDisplayEl = document.querySelector("#timerDisplay")
-
 const currentTimeIntervalEl = document.querySelector("#cyclesDisplay")
-
-
-/*----- STATE VARIABLES -----*/
 
 let timer = null;
 let timer2 = null;
@@ -16,20 +12,17 @@ let interval = 10000;
 let interval2 = 1000;
 
 let alive = 1
-// 1 is alive, zero is dead
-
+// 1 is alive, 0 is dead
 
 let isRfNotZeroK = true
 let isRfNotZeroPhos = true
 
 let metabolicPhenotype = 1
-
 let respiratoryPhenotype = 1
-
 let hemodynamicPhenotype = 1
+// starting phenotype values
 
 let globalReplacementFluidRateValue 
-
 let globalUltrafiltrationRateValue
 
 let currentLabValues = {
@@ -43,7 +36,6 @@ let currentLabValues = {
     fio2: 0.3
 }
 
-
 let roundedCurrentLabValues = {
     potassium: [],
     bicarb: [],
@@ -53,8 +45,7 @@ let roundedCurrentLabValues = {
     netFluids: [],
     pressors: [],
     fio2: []
-}
-
+} // for rendering without excess decimal points in DOM
 
 let allLabValues = {
     potassium: [],
@@ -65,7 +56,7 @@ let allLabValues = {
     netFluids: [],
     pressors: [],
     fio2: []
-}
+} // array that each "currentLabValue" gets added upon transition to next interval, allowing us to keep track of prior data to view trends
 
 let clearanceValues = {
     potassium: 0,
@@ -73,12 +64,10 @@ let clearanceValues = {
     phos: 0
 }
 
-
 /*----- CACHED ELEMENTS  -----*/
 
 const potassiumEl = document.querySelector('.potassium')
 const bicarbEl  = document.querySelector('.bicarb')
-
 
 const potassiumEl1 = document.querySelector('.potassium1')
 const potassiumEl2 = document.querySelector('.potassium2')
@@ -128,7 +117,6 @@ const fio2El3 = document.querySelector('.fio23')
 const fio2El4 = document.querySelector('.fio24')
 const fio2El5 = document.querySelector('.fio25')
 const fio2El6 = document.querySelector('.fio26')
-
 
 let replacementFluidRateValue
 
@@ -180,7 +168,6 @@ ultrafiltrationRateEl.oninput = function() {
         fourHourUFRateElOnSlider.innerHTML = `Rate / 4 Hours (cc/4hrs): ${convertedUltrafiltrationRate*4}`
 }
 
-
 /*----- FUNCTIONS -----*/
 
 function closeBeginModal() {
@@ -200,19 +187,12 @@ function handleStartClick() {
     startBtnEl.setAttribute("disabled", "true");
 }
 
-
 function init() {
-
-    // interval = 6000 // one minute is a cycle ### To do: make timer animation
     timer = setInterval(continueGame, interval)
     timer2 = setInterval(decrementCount, interval2)
-        // mirrored the function we used in the Tamagotchi game
-    cycles = 0 // starts at zero
-
+    cycles = 0 
     render()
-    // continueGame() - don't need this another time in init() function
 }
-
 
 function render() {
     roundPotassium()
@@ -221,16 +201,13 @@ function render() {
     renderAllLabValues()
 }
 
-
 function appendNewLabValues() {
     for (let key in allLabValues) {
         allLabValues[key].push((`${roundedCurrentLabValues[key]}`))
-        // console.log(`${allLabValues[key]}`)
         }   
 }
 
 function renderAllLabValues() {
-
     if (cycles === 0) {
         currentTimeIntervalEl.innerHTML = `0hr`
             potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
@@ -398,8 +375,7 @@ function decrementCount() {
         timer2Value --;
      renderClock(); 
     } else {
-        // clearInterval(timer2) // this would make it stop running
-        // resetClock()
+        // for future version, may add a pause clock feature in this location
     }
 }
 
@@ -416,16 +392,11 @@ function resetClock() {
 }
 
 function continueGame(){
-    // mirrored the function we used in the Tamagotchi game
     let lastCycle = cycles
-    cycles++ //so game cycles increase with each 'runGame'
-    console.log(`Current Cycle: ${cycles}`)
-
+    cycles++ 
     if (lastCycle < cycles) {
-    // nextInterval()
     goToNextOrEndGame()
     resetClock()
-    console.log(lastCycle)
     }
 }
 
@@ -436,30 +407,23 @@ function goToNextOrEndGame() {
 }
 
 function nextInterval() {
-    // either time or button event triggers next interval
     if (alive == 1) {
     potassiumClearanceValueModulation()
     toxinAccumulation()
     toxinClearance()
-    console.log("Next Interval")
     metabolicPhenotypeValues()
     respiratoryPhenotypeValues()
     hemodynamicPhenotypeValues()
-    console.log("hemodynamic phenotype: " + hemodynamicPhenotype)
-    console.log("current pressors: " + currentLabValues.pressors)
-    console.log("current rounded pressors: " + roundedCurrentLabValues.pressors)
     aliveOrDead()
-    console.log("alive: " + alive)
     render()
     } else if (alive == 0) {
         gameOver()
     }
 }
 
-
 function gameOver() {
 
-    gameOverModal.style.display = "block";
+  gameOverModal.style.display = "block";
 
   if (alive == 1) {
     gameOverFeedback.innerHTML = "Patient Survived!"
@@ -471,7 +435,6 @@ function gameOver() {
   }
 }
 
-  
 function wasMetabolicLethal() {
     if (metabolicPhenotype < 3) {
         return
@@ -502,12 +465,12 @@ function wasHemodynamicLethal() {
     }
 }
 
-
 function refreshPage() {
     location.reload()
 }
 
 function toxinAccumulation() {
+
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
     currentLabValues.phos += 0.5
@@ -522,26 +485,23 @@ function toxinAccumulation() {
     
         } else if (currentLabValues.netFluids < -1000)
             {currentLabValues.pressors = 2
-    } else {currentLabValues.pressors = 1}
+        } else {currentLabValues.pressors = 1}
 
 
-    if (currentLabValues.netFluids > 1000) {
-    currentLabValues.fio2 = 1.0 
-    } else if (currentLabValues.netFluids > 500) {
-        currentLabValues.fio2 = 0.8
-    } else if (currentLabValues.netFluids <= 500) {
-        currentLabValues.fio2 = 0.3
-    } 
+        if (currentLabValues.netFluids > 1000) {
+            currentLabValues.fio2 = 1.0 
+        } else if (currentLabValues.netFluids > 500) {
+            currentLabValues.fio2 = 0.8
+        } else if (currentLabValues.netFluids <= 500) {
+            currentLabValues.fio2 = 0.3
+        } 
 } 
-
 
 function ultrafiltrationConversion () {
 if (convertedUltrafiltrationRate === undefined) {
     currentLabValues.fourHrUltrafiltration = 0
 } else {currentLabValues.fourHrUltrafiltration = convertedUltrafiltrationRate*4}
 }
-
-
 
 function toxinClearance() {
     runPotassiumClearance()
@@ -551,23 +511,22 @@ function toxinClearance() {
 
 function roundPotassium() {
     roundedCurrentLabValues.potassium = currentLabValues.potassium.toFixed(1)
-} // we only want this in the rendering output, not under the hood
+} 
 
 function roundPhos() {
+    // this rounds not only 'Phos' but now all added values, additional features added later
     roundedCurrentLabValues.phos = currentLabValues.phos.toFixed(1)
     roundedCurrentLabValues.fourHrFluidIn = currentLabValues.fourHrFluidIn.toFixed(0)
     roundedCurrentLabValues.fourHrUltrafiltration = currentLabValues.fourHrUltrafiltration.toFixed(0)
     roundedCurrentLabValues.netFluids = currentLabValues.netFluids.toFixed(0)
     roundedCurrentLabValues.pressors = currentLabValues.pressors.toFixed(0)
     roundedCurrentLabValues.fio2 = currentLabValues.fio2.toFixed(1)
-} // for now this function is named roundPhos but is applied to all other values
-
+}
 
 function runPotassiumClearance() {
     if (allLabValues.potassium[allLabValues.potassium.length - 1] < 4.5 && isRfNotZeroK) { return
     } else { potassiumClearance() }
 }
-
 
 function potassiumClearance() {
     if (clearanceValues.potassium == 1) {
@@ -578,9 +537,7 @@ function potassiumClearance() {
         currentLabValues.potassium -= 2.5}
 }
 
-
 function potassiumClearanceValueModulation() {
-
     if (globalReplacementFluidRateValue == 0) {
         clearanceValues.potassium = 0
         clearanceValues.phos = 0
@@ -596,7 +553,7 @@ function potassiumClearanceValueModulation() {
 } 
 
 function bicarbClearance() {
-    // this will be run after user clicks "sign orders" button
+    // KEEP this piece of code for now; anticipate adding bicarb as another lab value in version 2.0
        if (currentLabValues.bicarb < 24 && clearanceValues.bicarb === 1) {
         clearanceValues.bicarb += 4
        } else if (currentLabValues.bicarb < 24 && clearanceValues.bicarb === 2) {
@@ -604,16 +561,12 @@ function bicarbClearance() {
        }
 }
 
-
 function runPhosClearance() {
     if (allLabValues.phos[allLabValues.phos.length - 1] < 4.1 && isRfNotZeroPhos) { return
     } else { phosClearance() }
 }
 
 function phosClearance() {
-    // ### need to write this out too
-    // console.log("phos clearance function running")
-
     if (clearanceValues.phos == 1) {
         currentLabValues.phos -= 0.4
     } else if (clearanceValues.phos == 2) {
@@ -622,17 +575,13 @@ function phosClearance() {
         currentLabValues.phos -= 1.3}
     }
 
-
-
 function updateRFRValue() {
-  // SRC: https://www.geeksforgeeks.org/how-to-get-value-of-selected-radio-button-using-javascript/
     document.getElementById("replacement-fluid-rate").innerHTML = "";
     let el = document.getElementsByTagName('input');
     for (i = 0; i < el.length; i++) {
         if (el[i].checked) {
             replacementFluidRateValue = el[i].value
             globalReplacementFluidRateValue = replacementFluidRateValue
-            // console.log(replacementFluidRateValue)
             document.getElementById("replacement-fluid-rate").innerHTML = `Replacement Fluid Rate: ${replacementFluidRateValue}`
         }
     } 
@@ -643,13 +592,11 @@ function initiatePrismasol0k () {
     disappearingRadioButtonsContainerEl.style.visibility = "visible";
     isRfNotZeroK = false;
     isRfNotZeroPhos = false;
-    // console.log("prismasol0k")
     btnPrismasol0kEl.setAttribute("disabled", "true");
     btnPrismasol4kEl.removeAttribute("disabled", "true");
     btnPrismasol4kEl.setAttribute("enabled", "true");
     btnPhoxillumEl.removeAttribute("disabled", "true");
     btnPhoxillumEl.setAttribute("enabled", "true");
-    // need to add effect of into K/Phos handling functions
 }
 
 function initiatePrismasol4k () {
@@ -657,13 +604,11 @@ function initiatePrismasol4k () {
     disappearingRadioButtonsContainerEl.style.visibility = "visible";
     isRfNotZeroK = true;
     isRfNotZeroPhos = false;
-    // console.log("prismasol4k")
     btnPrismasol0kEl.removeAttribute("disabled", "true");
     btnPrismasol0kEl.setAttribute("enabled", "true");
     btnPrismasol4kEl.setAttribute("disabled", "true");
     btnPhoxillumEl.removeAttribute("disabled", "true");
     btnPhoxillumEl.setAttribute("enabled", "true");
-    // need to add effect of into K/Phos handling functions
 }
 
 function initiatePhoxillum () {
@@ -671,16 +616,12 @@ function initiatePhoxillum () {
     disappearingRadioButtonsContainerEl.style.visibility = "visible";
     isRfNotZeroK = true;
     isRfNotZeroPhos = true;
-    // console.log("phoxillum")
     btnPrismasol0kEl.removeAttribute("disabled", "true");
     btnPrismasol0kEl.setAttribute("enabled", "true");
     btnPrismasol4kEl.removeAttribute("disabled", "true");
     btnPrismasol4kEl.setAttribute("enabled", "true");
     btnPhoxillumEl.setAttribute("disabled", "true");
-    // need to add effect of into K/Phos handling functions
-
 }
-
 
 function aliveOrDead() {
     if (metabolicPhenotype <3 && hemodynamicPhenotype <3 && respiratoryPhenotype <3) {
@@ -710,10 +651,9 @@ function respiratoryPhenotypeValues() {
     if (currentLabValues.fio2 > 0.9) {
         respiratoryPhenotype = 3}
 }
-// need to add fio2 to this
-// also need a function for fio2 to be impacted by net fluid values
 
 function hemodynamicPhenotypeValues() {
     if (currentLabValues.pressors == 3) {
         hemodynamicPhenotype = 3} 
 }
+

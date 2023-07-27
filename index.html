@@ -4,94 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRRT Virtual Patient Simulation</title>
-
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-
 </head>
 <body>
-
-    <div class="header">
+    <header class="header">
         <header class="title">CRRT Virtual Patient Simulator</header>
         <p>Robert Hayden, MD&nbsp;&nbsp;&nbsp;&copy;&nbsp;&nbsp;2023</p>
-    </div>
-
-<main class="outermost-container">
-
-        <div id="modal-start-page-id" class="modal-start-page">
-     
-    
+    </header>
+  <main class="outermost-container">
+    <div id="modal-start-page-id" class="modal-start-page">
         <div class="modal-start-page-content">
-          
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
             <h1>Welcome to the CRRT Virtual Patient Simulator!</h1>
-            <h5>&nbsp;</h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
             <h5>OBJECTIVE: optimize the CRRT prescription to keep the patient alive over a "time period" of 24 hours.</h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+            <h5>YOUR PATIENT: 55 year old man with pneumosepsis resulting in anuric acute kidney injury due to ischemic acute tubular necrosis. A right temporary dialysis catheter has just been placed to start CRRT. The patient weighs 100kg.</h5>
+                <h5>&nbsp;</h5>
             <h5>TIME PERIOD: the 24 hour time period is broken up into 4-hour intervals, each of which is ten seconds in real time. </h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
             <h5>INTERVALS: at each 4-hour interval, updated clinical data (pertinent lab values, balance of fluids in/out, pressor requirement, and ventilator F<small>I</small>O2) will appear. React accordingly and stabilize the patient by updating the CRRT prescription settings on the left. The prescription changes you make during a given interval will take effect upon transition into the following time interval.</h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
             <h5>OUTCOME: you will succeed if the patient survives the 24-hour period. If the patient does not survive, you will receive specific feedback regarding the ways your CRRT prescription could have been optimized.</h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
             <h5>TO BEGIN the simulation, you will have to click the button "Start Simulation"</h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
             <h5>NOTE these instructions will be available to review again as needed by clicking "Review Instructions".</h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
             <button class="button-begin-modal">Enter Simulation</button>
-            <h5>&nbsp;</h5>
-            <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
         </div>
-        </div>
-    
-      <div id="modal-game-over-id" class="modal-game-over">
-    
+    </div>
+    <div id="modal-game-over-id" class="modal-game-over">
         <div class="modal-game-over-content">
-            <h5>&nbsp;</h5>
-          <h1>Game Over</h1>
-          <h5>&nbsp;</h5>
-          <h5>&nbsp;</h5>
-          <h3 id="feedback">Life or Death</h3>
-          <h5>&nbsp;</h5>
-          <h5>&nbsp;</h5>
-          <h4 id="specific-lethal-outcome"></h4>
-          <h5>&nbsp;</h5>
-          <h5>&nbsp;</h5>
-          <button class="button-refresh-page">Play Simulation Again</button>
-          <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+            <h1>Game Over</h1>
+                <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+            <h3 id="feedback">Life or Death</h3>
+                <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+            <h4 id="specific-lethal-outcome"></h4>
+                <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+            <button class="button-refresh-page">Play Simulation Again</button>
+                <h5>&nbsp;</h5>
         </div>
-      </div>
-
-      <div id="modal-instructions-id" class="modal-instructions">
-    
+    </div>
+    <div id="modal-instructions-id" class="modal-instructions">
         <div class="modal-instructions-content">
-          <h1>Instructions</h1>
-          <h5>&nbsp;</h5>
-          <h5>OBJECTIVE: optimize the CRRT prescription to keep the patient alive over a "time period" of 24 hours.</h5>
-          <h5>&nbsp;</h5>
-          <h5>TIME PERIOD: the 24 hour time period is broken up into 4-hour intervals, each of which is ten seconds in real time. </h5>
-          <h5>&nbsp;</h5>
-          <h5>INTERVALS: at each 4-hour interval, updated clinical data (pertinent lab values, balance of fluids in/out, pressor requirement, and ventilator F<small>I</small>O2) will appear. React accordingly and stabilize the patient by updating the CRRT prescription settings on the left. The prescription changes you make during a given interval will take effect upon transition into the following time interval.</h5>
-          <h5>&nbsp;</h5>
-          <h5>OUTCOME: you will succeed if the patient survives the 24-hour period. If the patient does not survive, you will receive specific feedback regarding the ways your CRRT prescription could have been optimized.</h5>
-          <h5>&nbsp;</h5>
-          <h5>TO BEGIN the simulation, you will have to click the button "Start Simulation"</h5>
-          <h5>&nbsp;</h5>
-          <h5>&nbsp;</h5>
-          <button class="button-close-instructions-modal">Return to Simulation</button>
-          <h5>&nbsp;</h5>
+            <h1>Instructions</h1>
+                <h5>&nbsp;</h5>
+            <h5>OBJECTIVE: optimize the CRRT prescription to keep the patient alive over a "time period" of 24 hours.</h5>
+                <h5>&nbsp;</h5>
+            <h5>YOUR PATIENT: 55 year old man with pneumosepsis resulting in anuric acute kidney injury due to ischemic acute tubular necrosis. A right temporary dialysis catheter has just been placed to start CRRT. The patient weighs 100kg.</h5>
+                <h5>&nbsp;</h5>
+            <h5>TIME PERIOD: the 24 hour time period is broken up into 4-hour intervals, each of which is ten seconds in real time. </h5>
+                <h5>&nbsp;</h5>
+            <h5>INTERVALS: at each 4-hour interval, updated clinical data (pertinent lab values, balance of fluids in/out, pressor requirement, and ventilator F<small>I</small>O2) will appear. React accordingly and stabilize the patient by updating the CRRT prescription settings on the left. The prescription changes you make during a given interval will take effect upon transition into the following time interval.</h5>
+                <h5>&nbsp;</h5>
+            <h5>OUTCOME: you will succeed if the patient survives the 24-hour period. If the patient does not survive, you will receive specific feedback regarding the ways your CRRT prescription could have been optimized.</h5>
+                <h5>&nbsp;</h5>
+            <h5>TO BEGIN the simulation, you will have to click the button "Start Simulation"</h5>
+                <h5>&nbsp;</h5>
+                <h5>&nbsp;</h5>
+            <button class="button-close-instructions-modal">Return to Simulation</button>
+                <h5>&nbsp;</h5>
         </div>
-      </div>
-
-
-
+    </div>
     <main class="main-container">
-
         <section class="central-container">
-
             <section class="data-container">
-
                     <div class="data-labels-container">
                         <h3>Time Interval</h3>
                         <h4>Potassium</h4>
@@ -161,30 +147,20 @@
                         <h4 class="net6">_</h4>
                         <h4 class="vaso6">_</h4>
                         <h4 class="fio26">_</h4>
-                    </div>
-            
-                
+                    </div> 
             </section>
-
             <section class="virtual-patient-container">
-
                     <div class="iframe-container">
                         <iframe id="iframe"  src="https://renalprimers.com/crrt.html"></iframe>
                     </div>
-
             </section>
-
         </section>
-
         <section class="side-button-container">
-
-            <h3>Prescription Settings</h3>
-
+          <h3>Prescription Settings</h3>
             <fieldset id="blood-flow-rate-field">
                 <legend>Blood Flow Rate</legend>
                 <div id="blow-flow-rate">250 mL/min</div>
             </fieldset>
-
             <fieldset id="replacement-fluid-type">
                 <legend>Select Replacement Fluid Type</legend>
                 <section id="RFT-buttons-container">
@@ -193,7 +169,6 @@
                     <button class="button-Phoxillum" type="button">Phoxillum 4K, 2.5Ca, 1Phos</button>
                 </section>
             </fieldset>
-            
             <fieldset id="replacement-fluid-rate-radio">
                 <legend>Select Replacement Fluid Rate</legend>
                   <div class="disappearing-container-radio-buttons">
@@ -215,11 +190,8 @@
                     </div>
                   </div>
                 <button class="update-order-button" type="button">Update Order</button>
-
                 <div id="replacement-fluid-rate">Replacement Fluid Rate: 0</div>
-
             </fieldset>
-
             <fieldset id="ultrafiltration-rate-field">
                 <legend>Set Ultrafiltration Rate (cc/hr)</legend>
                 <input type="range" id="myUfRange" value="0">
@@ -227,37 +199,25 @@
                     <div class="slider-ultrafiltration-rate">Rate / Hour: (cc/hr): 0</div>
                     <div class="slider-ultrafiltration-rate-4hr">Rate / 4 Hours (cc/4hrs): 0</div>
                  </div>
-                <!-- <button class="update-ultrafiltration-button" type="button">Update Ultrafiltration Rate Order</button>
-                <div class="ultrafiltration-rate">Ultrafiltration Rate: 0</div> -->
             </fieldset>
-
         </section>
-
         <section class="lower-button-container">
-
             <div class="start-button-container">
                 <button class="start">Start Simulation</button>
             </div>
-            
             <div class="instructions-button-container">
                 <button class="open-instructions">Review Instructions</button>
             </div>
-
             <div class="timer-container">
                 <h2>Countdown Until <br> Next Interval</h2>
                 <h1 id="timerDisplay">-</h1>
             </div>
-
             <div class="timer-container">
                 <h2>Current Time <br> Interval <br> </h2>
                 <h1 id="cyclesDisplay">0hr</h1>
             </div>
-
         </section>
-
     </main>
-
-</main>
-    
+  </main>
 </body>
 </html>
