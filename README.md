@@ -1,5 +1,5 @@
 
-TITLE:  --- CRRT Virtual Patient Simulator ---
+TITLE: CRRT Virtual Patient Simulator 
 
 BRIEF SUMMARY
 -------------
@@ -13,13 +13,17 @@ There are three main categories of disease processes that may be lethal if not a
 
 As the game begins, an introductory message describes the patient and task at hand (image below):
 
+![image](https://github.com/rmhayden/crrt/assets/138035971/44dac4df-50e6-4f21-a457-07f6b49818a2)
 
 
 Key interactive features are highlighted in red (image below), which shows a screenshot of the game's user experience:
 
+![image](https://github.com/rmhayden/crrt/assets/138035971/f25e86d9-bfda-4978-a23a-a57341a361f9)
+
 
 At the end of the game, if the patient does not survive, targeted feedback based on what could have been better optimized is given to the user to ensure optimal learning. See screen shot example (image below:)
 
+![image](https://github.com/rmhayden/crrt/assets/138035971/356d7569-46d0-4a3a-a43d-99af5bfad8ef)
 
 
 TECHNOLOGIES USED
@@ -31,22 +35,19 @@ HOW TO PLAY THE GAME
 --------------------
 The browser-based web app game is live and can be played by clicking one of the following links:
 
-[https://rmhayden.github.io/crrt/] - GitHub Pages
-[https://renalprimers.com/crrt/index.html] -RenalPrimers.com (personal website - in development)
+GitHub Pages - [https://rmhayden.github.io/crrt/]
+RenalPrimers.com - [https://renalprimers.com/crrt/index.html]
 
 
 FUTURE FEATURES
 ---------------
 In future versions, the following features may be added:
->> additional pertinent laboratory values (such as pH and bicarbonate)
->> interactive animated graphics (ventilator, hemodynamics, CRRT machine animations change in accordance with the phenotype in the game)
->> the option to pick one or more specific cases (would help the user understand different clinical scenarios)
->> customization: could allow the instructor to input specific starting data and elements of the case that are then set as initial values for pertinent variables
->> appreciate any feedback for other suggested future features!
+- additional pertinent laboratory values (such as pH and bicarbonate)
+- interactive animated graphics (ventilator, hemodynamics, CRRT machine animations change in accordance with the phenotype in the game)
+- the option to pick one or more specific cases (would help the user understand different clinical scenarios)
+- customization: could allow the instructor to input specific starting data and elements of the case that are then set as initial values for pertinent variables
+- appreciate any feedback for other suggested future features!
 
 
 -----------------
-Robert Hayden, MD
-Kidney Medicine
-Boston, MA
-July, 2023
+Robert Hayden, MD  |  Kidney Medicine  |  Boston, MA  |  July, 2023
