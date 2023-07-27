@@ -99,6 +99,7 @@ body {
 
 #replacement-fluid-rate-radio {
     margin: 10px;
+    margin-top: 20px;
     display: flex;
     flex-flow: column wrap;
     border-color: black;
@@ -109,6 +110,7 @@ body {
     visibility: hidden;
     cursor: pointer;
     height: 30px;
+    max-width: 250px;
     margin: 4px;
     background-color: rgb(171, 171, 198);
     color: rgb(33, 32, 32);
@@ -120,6 +122,7 @@ body {
 
 #replacement-fluid-type {
     margin: 10px;
+    margin-top: 20px;
     display: flex;
     flex-flow: row;
     border-color: black;
@@ -138,6 +141,7 @@ body {
 
 #replacement-fluid-type-radio {
     margin: 10px;
+    margin-top: 20px;
     display: flex;
     flex-flow: column;
     border-color: black;
@@ -274,6 +278,7 @@ input {
     visibility: visible;
     background-color: rgba(236, 251, 231, 0.9); 
     margin: 10px;
+    margin-left: 40px;
     padding: 10px;
     border: 1px solid #888;
     width: 95%;
@@ -315,6 +320,7 @@ input {
     visibility: visible;
     background-color: rgba(236, 251, 231, 0.9); 
     margin: 10px;
+    margin-left: 40px;
     padding: 10px;
     border: 1px solid #888;
     width: 95%;
@@ -343,7 +349,7 @@ input {
     position: fixed; 
     z-index: 1;
     padding-top: 100px;
-    left: 0;
+    left: 0px;
     top: 0;
     width: 100%; 
     height: 100%; 
@@ -355,6 +361,7 @@ input {
     visibility: visible;
     background-color: #dbe4f7;
     margin: 10px;
+    margin-left: 40px;
     padding: 20px;
     border: 1px solid #888;
     width: 95%;
@@ -378,7 +385,31 @@ input {
 }
 
 
+#ultrafiltration-rate-field {
+    margin: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    border-color: black;
+}
+
+#myUfRange {
+    max-width: 350px;
+    margin-top: 20px;
+}
+
+
 .slider-ultrafiltration-rate-container {
     display: inline;
-    padding: 10px;
+    padding: 20px;
 }
+
+
+.slider-ultrafiltration-rate {
+    padding-bottom: 10px;
+}
+
+.slider-ultrafiltration-rate-4hr {
+    padding-top: 10px;
+}
+

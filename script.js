@@ -157,6 +157,7 @@ const btnOpenInstructions = document.querySelector(".open-instructions")
 let ultrafiltrationRateEl = document.getElementById("myUfRange")
 let convertedUltrafiltrationRate
 let sliderUfRate = document.querySelector(".slider-ultrafiltration-rate")
+let fourHourUFRateElOnSlider = document.querySelector(".slider-ultrafiltration-rate-4hr")
 
 /*----- EVENT LISTENERS -----*/
 
@@ -175,7 +176,8 @@ btnOpenInstructions.addEventListener('click', openInstructions)
 
 ultrafiltrationRateEl.oninput = function() {
         convertedUltrafiltrationRate = this.value*10;
-        sliderUfRate.innerHTML = `Ultrafiltration Rate: ${convertedUltrafiltrationRate}`
+        sliderUfRate.innerHTML = `Rate / Hour (cc/hr): ${convertedUltrafiltrationRate}`
+        fourHourUFRateElOnSlider.innerHTML = `Rate / 4 Hours (cc/4hrs): ${convertedUltrafiltrationRate*4}`
 }
 
 
@@ -517,13 +519,12 @@ function toxinAccumulation() {
 
     currentLabValues.netFluids = currentLabValues.fourHrFluidIn - currentLabValues.fourHrUltrafiltration
 
-    if (Math.abs(currentLabValues.netFluids) > 1800) {
-        currentLabValues.pressors = 3
-    // } else if (Math.abs(currentLabValues.netFluids) > 1000) {
-    //     currentLabValues.pressors = 2
+        if (currentLabValues.netFluids < -1800) {
+            currentLabValues.pressors = 3
+    
+        } else if (currentLabValues.netFluids < -1000)
+            {currentLabValues.pressors = 2
     } else {currentLabValues.pressors = 1}
-
-    // cannot use absolute value here!
 
 
     if (currentLabValues.netFluids > 1000) {
@@ -534,6 +535,7 @@ function toxinAccumulation() {
         currentLabValues.fio2 = 0.3
     } 
 } 
+
 
 function ultrafiltrationConversion () {
 if (convertedUltrafiltrationRate === undefined) {
@@ -556,7 +558,7 @@ function roundPotassium() {
 function roundPhos() {
     roundedCurrentLabValues.phos = currentLabValues.phos.toFixed(1)
     roundedCurrentLabValues.fourHrFluidIn = currentLabValues.fourHrFluidIn.toFixed(0)
-    roundedCurrentLabValues.fourHrUltrafiltration = currentLabValues.fourHrUltrafiltration.toFixed(1)
+    roundedCurrentLabValues.fourHrUltrafiltration = currentLabValues.fourHrUltrafiltration.toFixed(0)
     roundedCurrentLabValues.netFluids = currentLabValues.netFluids.toFixed(0)
     roundedCurrentLabValues.pressors = currentLabValues.pressors.toFixed(0)
     roundedCurrentLabValues.fio2 = currentLabValues.fio2.toFixed(1)
