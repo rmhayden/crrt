@@ -11,42 +11,80 @@
 </head>
 <body>
 
-    
-    <div id="modal-start-page-id" class="modal-start-page">
-        <!-- Modal content -->
+    <div class="header">
+        <header class="title">CRRT Virtual Patient Simulator</header>
+        <p>Robert Hayden, MD&nbsp;&nbsp;&nbsp;&copy;&nbsp;&nbsp;2023</p>
+    </div>
+
+<main class="outermost-container">
+
+        <div id="modal-start-page-id" class="modal-start-page">
+     
     
         <div class="modal-start-page-content">
-            <!-- <span class="close">&times;</span> -->
-            <h3>Game Start Modal</h3>
+          
+            <h5>&nbsp;</h5>
+            <h1>Welcome to the CRRT Virtual Patient Simulator!</h1>
+            <h5>&nbsp;</h5>
+            <h5>&nbsp;</h5>
+            <h5>OBJECTIVE: optimize the CRRT prescription to keep the patient alive over a "time period" of 24 hours.</h5>
+            <h5>&nbsp;</h5>
+            <h5>TIME PERIOD: the 24 hour time period is broken up into 4-hour intervals, each of which is ten seconds in real time. </h5>
+            <h5>&nbsp;</h5>
+            <h5>INTERVALS: at each 4-hour interval, updated clinical data (pertinent lab values, balance of fluids in/out, pressor requirement, and ventilator F<small>I</small>O2) will appear. React accordingly and stabilize the patient by updating the CRRT prescription settings on the left. The prescription changes you make during a given interval will take effect upon transition into the following time interval.</h5>
+            <h5>&nbsp;</h5>
+            <h5>OUTCOME: you will succeed if the patient survives the 24-hour period. If the patient does not survive, you will receive specific feedback regarding the ways your CRRT prescription could have been optimized.</h5>
+            <h5>&nbsp;</h5>
+            <h5>TO BEGIN the simulation, you will have to click the button "Start Simulation"</h5>
+            <h5>&nbsp;</h5>
+            <h5>NOTE these instructions will be available to review again as needed by clicking "Review Instructions".</h5>
+            <h5>&nbsp;</h5>
             <button class="button-begin-modal">Enter Simulation</button>
+            <h5>&nbsp;</h5>
+            <h5>&nbsp;</h5>
         </div>
-      </div>
+        </div>
     
       <div id="modal-game-over-id" class="modal-game-over">
     
         <div class="modal-game-over-content">
-          <h2>Game Over</h2>
+            <h5>&nbsp;</h5>
+          <h1>Game Over</h1>
+          <h5>&nbsp;</h5>
+          <h5>&nbsp;</h5>
           <h3 id="feedback">Life or Death</h3>
+          <h5>&nbsp;</h5>
+          <h5>&nbsp;</h5>
           <h4 id="specific-lethal-outcome"></h4>
+          <h5>&nbsp;</h5>
+          <h5>&nbsp;</h5>
           <button class="button-refresh-page">Play Simulation Again</button>
+          <h5>&nbsp;</h5>
         </div>
       </div>
 
       <div id="modal-instructions-id" class="modal-instructions">
     
         <div class="modal-instructions-content">
-          <h4>Instructions</h4>
-          <h5 id="feedback">instructions</h5>
+          <h1>Instructions</h1>
+          <h5>&nbsp;</h5>
+          <h5>OBJECTIVE: optimize the CRRT prescription to keep the patient alive over a "time period" of 24 hours.</h5>
+          <h5>&nbsp;</h5>
+          <h5>TIME PERIOD: the 24 hour time period is broken up into 4-hour intervals, each of which is ten seconds in real time. </h5>
+          <h5>&nbsp;</h5>
+          <h5>INTERVALS: at each 4-hour interval, updated clinical data (pertinent lab values, balance of fluids in/out, pressor requirement, and ventilator F<small>I</small>O2) will appear. React accordingly and stabilize the patient by updating the CRRT prescription settings on the left. The prescription changes you make during a given interval will take effect upon transition into the following time interval.</h5>
+          <h5>&nbsp;</h5>
+          <h5>OUTCOME: you will succeed if the patient survives the 24-hour period. If the patient does not survive, you will receive specific feedback regarding the ways your CRRT prescription could have been optimized.</h5>
+          <h5>&nbsp;</h5>
+          <h5>TO BEGIN the simulation, you will have to click the button "Start Simulation"</h5>
+          <h5>&nbsp;</h5>
+          <h5>&nbsp;</h5>
           <button class="button-close-instructions-modal">Return to Simulation</button>
+          <h5>&nbsp;</h5>
         </div>
       </div>
 
 
-<main class="outermost-container">
-
-    <div class="title">
-        <h1>CRRT Virtual Patient Simulator</h1>
-    </div>
 
     <main class="main-container">
 
@@ -58,14 +96,14 @@
                         <h3>Time Interval</h3>
                         <h4>Potassium</h4>
                         <h4>Phosphorus</h4>
-                        <h4>4hr Fluid Intake</h4>
-                        <h4>4hr Ultrafiltration</h4>
-                        <h4>4hr Net Fluid Balance</h4>
+                        <h4>4hr Fluid Intake (cc)</h4>
+                        <h4>4hr Ultrafiltration (cc)</h4>
+                        <h4>4hr Net Fluid Balance (cc)</h4>
                         <h4>Vasopressors (#)</h4>
                         <h4>Vent. F<small>I</small>O2</h4>
                     </div>
                     <div class="0hr-container">
-                        <h4>0hr</h4>
+                        <h3>0hr</h3>
                         <h4 class="potassium1">_</h4>
                         <h4 class="phos1">_</h4>
                         <h4 class="in1">_</h4>
@@ -75,7 +113,7 @@
                         <h4 class="fio21">_</h4>
                     </div>
                     <div class="4hr-container">
-                        <h4>4hr</h4>
+                        <h3>4hr</h3>
                         <h4 class="potassium2">_</h4>
                         <h4 class="phos2">_</h4>
                         <h4 class="in2">_</h4>
@@ -85,7 +123,7 @@
                         <h4 class="fio22">_</h4>
                     </div>
                     <div class="8hr-container">
-                        <h4>8hr</h4>
+                        <h3>8hr</h3>
                         <h4 class="potassium3">_</h4>
                         <h4 class="phos3">_</h4>
                         <h4 class="in3">_</h4>
@@ -95,7 +133,7 @@
                         <h4 class="fio23">_</h4>
                     </div>
                     <div class="12hr-container">
-                        <h4>12hr</h4>
+                        <h3>12hr</h3>
                         <h4 class="potassium4">_</h4>
                         <h4 class="phos4">_</h4>
                         <h4 class="in4">_</h4>
@@ -105,7 +143,7 @@
                         <h4 class="fio24">_</h4>
                     </div>
                     <div class="16hr-container">
-                        <h4>16hr</h4>
+                        <h3>16hr</h3>
                         <h4 class="potassium5">_</h4>
                         <h4 class="phos5">_</h4>
                         <h4 class="in5">_</h4>
@@ -115,7 +153,7 @@
                         <h4 class="fio25">_</h4>
                     </div>
                     <div class="20hr-container">
-                        <h4>20hr</h4>
+                        <h3>20hr</h3>
                         <h4 class="potassium6">_</h4>
                         <h4 class="phos6">_</h4>
                         <h4 class="in6">_</h4>
@@ -140,7 +178,7 @@
 
         <section class="side-button-container">
 
-            <h3>CRRT Prescription Settings</h3>
+            <h3>Prescription Settings</h3>
 
             <fieldset id="blood-flow-rate-field">
                 <legend>Blood Flow Rate</legend>
@@ -161,19 +199,19 @@
                   <div class="disappearing-container-radio-buttons">
                     <div>
                         <input type="radio" id="0RFR" name="RFR" value ="0">
-                        <label for="0RFR">0</label>
+                        <label for="0RFR">0 cc/hr</label>
                     </div>
                     <div>
                         <input type="radio" id="1600RFR" name="RFR" value ="1600">
-                        <label for="1600RFR">1600</label>
+                        <label for="1600RFR">1600 cc/hr</label>
                     </div>
                     <div>
                         <input type="radio" id="2400RFR" name="RFR" value ="2400">
-                        <label for="2400RFR">2400</label>
+                        <label for="2400RFR">2400 cc/hr</label>
                     </div>
                     <div>
                         <input type="radio" id="3200RFR" name="RFR" value ="3200">
-                        <label for="3200RFR">3200</label>
+                        <label for="3200RFR">3200 cc/hr</label>
                     </div>
                   </div>
                 <button class="update-order-button" type="button">Update Order</button>
@@ -206,13 +244,13 @@
             </div>
 
             <div class="timer-container">
-                <h3>Countdown Until <br> Next Interval</h3>
-                <h2 id="timerDisplay">-</h2>
+                <h2>Countdown Until <br> Next Interval</h2>
+                <h1 id="timerDisplay">-</h1>
             </div>
 
             <div class="timer-container">
-                <h3>Current <br> Time Interval</h3>
-                <h2 id="cyclesDisplay">0hr</h2>
+                <h2>Current Time <br> Interval <br> </h2>
+                <h1 id="cyclesDisplay">0hr</h1>
             </div>
 
         </section>

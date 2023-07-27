@@ -503,8 +503,6 @@ function wasHemodynamicLethal() {
 }
 
 
-
-
 function refreshPage() {
     location.reload()
 }
@@ -513,7 +511,7 @@ function toxinAccumulation() {
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
     currentLabValues.phos += 0.5
-    currentLabValues.fourHrFluidIn += 100
+    currentLabValues.fourHrFluidIn += 145
     
     ultrafiltrationConversion()
 
