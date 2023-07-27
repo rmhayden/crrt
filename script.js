@@ -18,6 +18,7 @@ let interval2 = 1000;
 let alive = 1
 // 1 is alive, zero is dead
 
+
 let isRfNotZeroK = true
 let isRfNotZeroPhos = true
 
@@ -29,8 +30,10 @@ let hemodynamicPhenotype = 1
 
 let globalReplacementFluidRateValue 
 
+let globalUltrafiltrationRateValue
+
 let currentLabValues = {
-    potassium: 7.2,
+    potassium: 6.2,
     bicarb: 20,
     phos: 3.1,
     fourHrFluidIn: 600,
@@ -112,6 +115,21 @@ const fluidsNetEl4 = document.querySelector('.net4')
 const fluidsNetEl5 = document.querySelector('.net5')
 const fluidsNetEl6 = document.querySelector('.net6')
 
+const pressorsEl1 = document.querySelector('.vaso1')
+const pressorsEl2 = document.querySelector('.vaso2')
+const pressorsEl3 = document.querySelector('.vaso3')
+const pressorsEl4 = document.querySelector('.vaso4')
+const pressorsEl5 = document.querySelector('.vaso5')
+const pressorsEl6 = document.querySelector('.vaso6')
+
+const fio2El1 = document.querySelector('.fio21')
+const fio2El2 = document.querySelector('.fio22')
+const fio2El3 = document.querySelector('.fio23')
+const fio2El4 = document.querySelector('.fio24')
+const fio2El5 = document.querySelector('.fio25')
+const fio2El6 = document.querySelector('.fio26')
+
+
 let replacementFluidRateValue
 
 const startBtnEl = document.querySelector('.start')
@@ -130,6 +148,7 @@ const btnRefreshPage = document.querySelector(".button-refresh-page")
 const gameOverModal = document.querySelector(".modal-game-over")
 
 const gameOverFeedback = document.querySelector("#feedback")
+const gameOverSpecificFeedbackEl = document.querySelector("#specific-lethal-outcome")
 
 const instructionsEl = document.querySelector(".modal-instructions")
 const btnCloseInstructions = document.querySelector(".button-close-instructions-modal")
@@ -155,9 +174,10 @@ btnCloseInstructions.addEventListener('click', closeInstructions)
 btnOpenInstructions.addEventListener('click', openInstructions)
 
 ultrafiltrationRateEl.oninput = function() {
-    convertedUltrafiltrationRate = this.value*10;
-    sliderUfRate.innerHTML = `Ultrafiltration Rate: ${convertedUltrafiltrationRate}`
+        convertedUltrafiltrationRate = this.value*10;
+        sliderUfRate.innerHTML = `Ultrafiltration Rate: ${convertedUltrafiltrationRate}`
 }
+
 
 /*----- FUNCTIONS -----*/
 
@@ -216,6 +236,8 @@ function renderAllLabValues() {
                     fluidsInEl1.innerHTML = `${allLabValues.fourHrFluidIn[0]}`
                         fluidsOutEl1.innerHTML = `${allLabValues.fourHrUltrafiltration[0]}`
                             fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
+                                pressorsEl1.innerHTML = `${allLabValues.pressors[0]}`
+                                    fio2El1.innerHTML = `${allLabValues.fio2[0]}`
     } else if (cycles === 1) {
         currentTimeIntervalEl.innerHTML = `4hr`
             potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
@@ -228,7 +250,10 @@ function renderAllLabValues() {
                         fluidsOutEl2.innerHTML = `${allLabValues.fourHrUltrafiltration[1]}`
                             fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
                             fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
-
+                                pressorsEl1.innerHTML = `${allLabValues.pressors[0]}`
+                                pressorsEl2.innerHTML = `${allLabValues.pressors[1]}`
+                                    fio2El1.innerHTML = `${allLabValues.fio2[0]}`
+                                    fio2El2.innerHTML = `${allLabValues.fio2[1]}`
     } else if (cycles === 2) {
         currentTimeIntervalEl.innerHTML = `8hr`
             potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
@@ -246,6 +271,12 @@ function renderAllLabValues() {
                             fluidsNetEl1.innerHTML = `${allLabValues.netFluids[0]}`
                             fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
                             fluidsNetEl3.innerHTML = `${allLabValues.netFluids[2]}`
+                                pressorsEl1.innerHTML = `${allLabValues.pressors[0]}`
+                                pressorsEl2.innerHTML = `${allLabValues.pressors[1]}`
+                                pressorsEl3.innerHTML = `${allLabValues.pressors[2]}`
+                                    fio2El1.innerHTML = `${allLabValues.fio2[0]}`
+                                    fio2El2.innerHTML = `${allLabValues.fio2[1]}`
+                                    fio2El3.innerHTML = `${allLabValues.fio2[2]}`
     } else if (cycles === 3) {
         currentTimeIntervalEl.innerHTML = `12hr`
             potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
@@ -268,6 +299,14 @@ function renderAllLabValues() {
                             fluidsNetEl2.innerHTML = `${allLabValues.netFluids[1]}`
                             fluidsNetEl3.innerHTML = `${allLabValues.netFluids[2]}`
                             fluidsNetEl4.innerHTML = `${allLabValues.netFluids[3]}`
+                                pressorsEl1.innerHTML = `${allLabValues.pressors[0]}`
+                                pressorsEl2.innerHTML = `${allLabValues.pressors[1]}`
+                                pressorsEl3.innerHTML = `${allLabValues.pressors[2]}`
+                                pressorsEl4.innerHTML = `${allLabValues.pressors[3]}`
+                                    fio2El1.innerHTML = `${allLabValues.fio2[0]}`
+                                    fio2El2.innerHTML = `${allLabValues.fio2[1]}`
+                                    fio2El3.innerHTML = `${allLabValues.fio2[2]}`
+                                    fio2El4.innerHTML = `${allLabValues.fio2[3]}`
     } else if (cycles === 4) {
         currentTimeIntervalEl.innerHTML = `16hr`
             potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
@@ -295,6 +334,16 @@ function renderAllLabValues() {
                             fluidsNetEl3.innerHTML = `${allLabValues.netFluids[2]}`
                             fluidsNetEl4.innerHTML = `${allLabValues.netFluids[3]}`
                             fluidsNetEl5.innerHTML = `${allLabValues.netFluids[4]}`
+                                pressorsEl1.innerHTML = `${allLabValues.pressors[0]}`
+                                pressorsEl2.innerHTML = `${allLabValues.pressors[1]}`
+                                pressorsEl3.innerHTML = `${allLabValues.pressors[2]}`
+                                pressorsEl4.innerHTML = `${allLabValues.pressors[3]}`
+                                pressorsEl5.innerHTML = `${allLabValues.pressors[4]}`
+                                    fio2El1.innerHTML = `${allLabValues.fio2[0]}`
+                                    fio2El2.innerHTML = `${allLabValues.fio2[1]}`
+                                    fio2El3.innerHTML = `${allLabValues.fio2[2]}`
+                                    fio2El4.innerHTML = `${allLabValues.fio2[3]}`
+                                    fio2El5.innerHTML = `${allLabValues.fio2[4]}`
     } else if (cycles === 5) {
         currentTimeIntervalEl.innerHTML = `20hr`
             potassiumEl1.innerHTML = `${allLabValues.potassium[0]}`
@@ -327,9 +376,20 @@ function renderAllLabValues() {
                             fluidsNetEl4.innerHTML = `${allLabValues.netFluids[3]}`
                             fluidsNetEl5.innerHTML = `${allLabValues.netFluids[4]}`
                             fluidsNetEl6.innerHTML = `${allLabValues.netFluids[5]}`
-    } // perhaps if made this an object could use iterative process to make drier
+                                pressorsEl1.innerHTML = `${allLabValues.pressors[0]}`
+                                pressorsEl2.innerHTML = `${allLabValues.pressors[1]}`
+                                pressorsEl3.innerHTML = `${allLabValues.pressors[2]}`
+                                pressorsEl4.innerHTML = `${allLabValues.pressors[3]}`
+                                pressorsEl5.innerHTML = `${allLabValues.pressors[4]}`
+                                pressorsEl6.innerHTML = `${allLabValues.pressors[5]}`
+                                    fio2El1.innerHTML = `${allLabValues.fio2[0]}`
+                                    fio2El2.innerHTML = `${allLabValues.fio2[1]}`
+                                    fio2El3.innerHTML = `${allLabValues.fio2[2]}`
+                                    fio2El4.innerHTML = `${allLabValues.fio2[3]}`
+                                    fio2El5.innerHTML = `${allLabValues.fio2[4]}`
+                                    fio2El6.innerHTML = `${allLabValues.fio2[5]}`
+    }
 }
-
 
 function decrementCount() {
     if(timer2Value>0) {
@@ -382,9 +442,10 @@ function nextInterval() {
     console.log("Next Interval")
     metabolicPhenotypeValues()
     respiratoryPhenotypeValues()
-    console.log("metabolic phenotype: " + metabolicPhenotype)
-    console.log("current potassium: " + roundedCurrentLabValues.potassium)
-    console.log("current phos: " + roundedCurrentLabValues.phos)
+    hemodynamicPhenotypeValues()
+    console.log("hemodynamic phenotype: " + hemodynamicPhenotype)
+    console.log("current pressors: " + currentLabValues.pressors)
+    console.log("current rounded pressors: " + roundedCurrentLabValues.pressors)
     aliveOrDead()
     console.log("alive: " + alive)
     render()
@@ -400,13 +461,47 @@ function gameOver() {
 
   if (alive == 1) {
     gameOverFeedback.innerHTML = "Patient Survived!"
-  } else if (metabolicPhenotype == 3 && roundedCurrentLabValues.potassium <= 2.5) {
-    gameOverFeedback.innerHTML = "The patient died of hypokalemia. Be highly cautious when using a 0K replacement fluid"
-  } else if (metabolicPhenotype == 3 && roundedCurrentLabValues.potassium >= 7.5) {
-    gameOverFeedback.innerHTML = "The patient died of hyperkalemia. A 0K replacement fluid and/or higher replacement fluid rate may have been better optimized"
-  } else if (respiratoryPhenotype == 3 && roundedCurrentLabValues.phos < 1.5) {
-    gameOverFeedback.innerHTML = "The patient died of hypophosphatemia. Be cautious when using a 0Phos replacement fluid"}
+  } else {
+    gameOverFeedback.innerHTML = "Your patient has passed away"
+    wasMetabolicLethal()
+    wasRespiratoryLethal()
+    wasHemodynamicLethal()
+  }
 }
+
+  
+function wasMetabolicLethal() {
+    if (metabolicPhenotype < 3) {
+        return
+    } else if (currentLabValues.potassium >= 7.5) {
+            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hyperkalemia. A 0K replacement fluid and/or higher replacement fluid rate may have been better optimized"
+        } else if (currentLabValues.potassium <= 2.5 && roundedCurrentLabValues.phos < 1.5) {
+            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hypokalemia and hypophosphatemia. Be careful when using replacement fluids that do not contain potassium and phosphorus if you are not otherwise providing careful supplementation"
+        } else if (currentLabValues.potassium <= 2.5) {
+            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hypokalemia. Be careful when using replacement fluids that do not contain potassium if you are not otherwise providing careful supplementation"
+        } else if (currentLabValues.phos < 1.5) {
+            "The patient died of hypophosphatemia. Be careful when using replacement fluids that do not contain phosphorus if you are not otherwise providing careful supplementation"
+        } 
+}
+
+function wasRespiratoryLethal() {
+    if (respiratoryPhenotype < 3) {
+        return
+    } else if (currentLabValues.fio2 > 0.9) {
+        gameOverSpecificFeedbackEl.innerHTML = "The patient died of respiratory failure due to fluid overload. Be mindful of progressive volume overload as you consider adjustments of the ultrafiltration rate, as hemodynamics permit."
+    }
+}
+
+function wasHemodynamicLethal() {
+    if (hemodynamicPhenotype < 3) {
+        return
+    } else if (currentLabValues.pressors = 3) {
+        gameOverSpecificFeedbackEl.innerHTML = "The patient died of worsening shock, precipitated by an excessively high rate of ultrafiltration."
+    }
+}
+
+
+
 
 function refreshPage() {
     location.reload()
@@ -416,9 +511,36 @@ function toxinAccumulation() {
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
     currentLabValues.phos += 0.5
-    currentLabValues.fourHrUltrafiltration = convertedUltrafiltrationRate*4
+    currentLabValues.fourHrFluidIn += 100
+    
+    ultrafiltrationConversion()
+
     currentLabValues.netFluids = currentLabValues.fourHrFluidIn - currentLabValues.fourHrUltrafiltration
+
+    if (Math.abs(currentLabValues.netFluids) > 1800) {
+        currentLabValues.pressors = 3
+    // } else if (Math.abs(currentLabValues.netFluids) > 1000) {
+    //     currentLabValues.pressors = 2
+    } else {currentLabValues.pressors = 1}
+
+    // cannot use absolute value here!
+
+
+    if (currentLabValues.netFluids > 1000) {
+    currentLabValues.fio2 = 1.0 
+    } else if (currentLabValues.netFluids > 500) {
+        currentLabValues.fio2 = 0.8
+    } else if (currentLabValues.netFluids <= 500) {
+        currentLabValues.fio2 = 0.3
+    } 
+} 
+
+function ultrafiltrationConversion () {
+if (convertedUltrafiltrationRate === undefined) {
+    currentLabValues.fourHrUltrafiltration = 0
+} else {currentLabValues.fourHrUltrafiltration = convertedUltrafiltrationRate*4}
 }
+
 
 
 function toxinClearance() {
@@ -434,8 +556,10 @@ function roundPotassium() {
 function roundPhos() {
     roundedCurrentLabValues.phos = currentLabValues.phos.toFixed(1)
     roundedCurrentLabValues.fourHrFluidIn = currentLabValues.fourHrFluidIn.toFixed(0)
-    roundedCurrentLabValues.fourHrUltrafiltration = currentLabValues.fourHrUltrafiltration.toFixed(0)
+    roundedCurrentLabValues.fourHrUltrafiltration = currentLabValues.fourHrUltrafiltration.toFixed(1)
     roundedCurrentLabValues.netFluids = currentLabValues.netFluids.toFixed(0)
+    roundedCurrentLabValues.pressors = currentLabValues.pressors.toFixed(0)
+    roundedCurrentLabValues.fio2 = currentLabValues.fio2.toFixed(1)
 } // for now this function is named roundPhos but is applied to all other values
 
 
@@ -443,7 +567,6 @@ function runPotassiumClearance() {
     if (allLabValues.potassium[allLabValues.potassium.length - 1] < 4.5 && isRfNotZeroK) { return
     } else { potassiumClearance() }
 }
-
 
 
 function potassiumClearance() {
@@ -566,17 +689,31 @@ function aliveOrDead() {
 } 
 
 function metabolicPhenotypeValues() {
-    if (roundedCurrentLabValues.potassium <= 2.5) {
+
+    hypoPhosPhenotype()
+
+    if (currentLabValues.potassium <= 2.5) {
+        metabolicPhenotype = 3;
+    } else if (currentLabValues.potassium >= 7.5) {
         metabolicPhenotype = 3
-    } else if (roundedCurrentLabValues.potassium >= 7.5) {
-        metabolicPhenotype = 3
-    } else if (roundedCurrentLabValues.potassium >= 6.5) {
+    } else if (currentLabValues.potassium >= 6.5) {
         metabolicPhenotype = 2
     } else {metabolicPhenotype = 1}
 } 
 
+function hypoPhosPhenotype() {
+    if (currentLabValues.phos < 1.5) {
+        metabolicPhenotype = 3}
+}
+
 function respiratoryPhenotypeValues() {
-    if (roundedCurrentLabValues.phos < 1.5) {
-        respiratoryPhenotype = 3
-    } 
+    if (currentLabValues.fio2 > 0.9) {
+        respiratoryPhenotype = 3}
+}
+// need to add fio2 to this
+// also need a function for fio2 to be impacted by net fluid values
+
+function hemodynamicPhenotypeValues() {
+    if (currentLabValues.pressors == 3) {
+        hemodynamicPhenotype = 3} 
 }
