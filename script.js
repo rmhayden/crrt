@@ -1,5 +1,6 @@
 
 /*----- CONSTANTS AND STATE VARIABLES -----*/
+// intentionally bundled this way to allow grouping of related variables, since there are a lot to keep track of
 
 const timerDisplayEl = document.querySelector("#timerDisplay")
 const currentTimeIntervalEl = document.querySelector("#cyclesDisplay")
@@ -439,13 +440,13 @@ function wasMetabolicLethal() {
     if (metabolicPhenotype < 3) {
         return
     } else if (currentLabValues.potassium >= 7.5) {
-            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hyperkalemia. A 0K replacement fluid and/or higher replacement fluid rate may have been better optimized"
-        } else if (currentLabValues.potassium <= 2.5 && roundedCurrentLabValues.phos < 1.5) {
-            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hypokalemia and hypophosphatemia. Be careful when using replacement fluids that do not contain potassium and phosphorus if you are not otherwise providing careful supplementation"
+            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hyperkalemia. A 0K replacement fluid and/or higher replacement fluid rate may have been better optimized."
+        } else if (currentLabValues.potassium <= 2.5 && currentLabValues.phos <= 1.0) {
+            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hypokalemia and hypophosphatemia. Be careful when using replacement fluids that do not contain potassium and phosphorus if you are not otherwise providing careful supplementation."
         } else if (currentLabValues.potassium <= 2.5) {
-            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hypokalemia. Be careful when using replacement fluids that do not contain potassium if you are not otherwise providing careful supplementation"
-        } else if (currentLabValues.phos < 1.5) {
-            "The patient died of hypophosphatemia. Be careful when using replacement fluids that do not contain phosphorus if you are not otherwise providing careful supplementation"
+            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hypokalemia. Be careful when using replacement fluids that do not contain potassium if you are not otherwise providing careful supplementation."  
+        } else if (currentLabValues.phos <= 1.0) {
+            gameOverSpecificFeedbackEl.innerHTML = "The patient died of hypophosphatemia. Be careful when using replacement fluids that do not contain phosphorus if you are not otherwise providing careful supplementation."
         } 
 }
 
@@ -473,7 +474,7 @@ function toxinAccumulation() {
 
     currentLabValues.potassium += 1
     currentLabValues.bicarb -= 4
-    currentLabValues.phos += 0.5
+    currentLabValues.phos += 0.7
     currentLabValues.fourHrFluidIn += 145
     
     ultrafiltrationConversion()
@@ -631,9 +632,9 @@ function aliveOrDead() {
 
 function metabolicPhenotypeValues() {
 
-    hypoPhosPhenotype()
-
-    if (currentLabValues.potassium <= 2.5) {
+    if (currentLabValues.phos < 1.0) {
+        metabolicPhenotype = 3
+    } else if (currentLabValues.potassium <= 2.5) {
         metabolicPhenotype = 3;
     } else if (currentLabValues.potassium >= 7.5) {
         metabolicPhenotype = 3
@@ -641,11 +642,6 @@ function metabolicPhenotypeValues() {
         metabolicPhenotype = 2
     } else {metabolicPhenotype = 1}
 } 
-
-function hypoPhosPhenotype() {
-    if (currentLabValues.phos < 1.5) {
-        metabolicPhenotype = 3}
-}
 
 function respiratoryPhenotypeValues() {
     if (currentLabValues.fio2 > 0.9) {
