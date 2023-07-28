@@ -1,5 +1,6 @@
-
-TITLE: CRRT Virtual Patient Simulator 
+------------------------------
+CRRT Virtual Patient Simulator 
+------------------------------
 
 BRIEF SUMMARY
 -------------
@@ -13,7 +14,7 @@ There are three main categories of disease processes that may be lethal if not a
 
 As the game begins, an introductory message describes the patient and task at hand (image below):
 
-![image](https://github.com/rmhayden/crrt/assets/138035971/44dac4df-50e6-4f21-a457-07f6b49818a2)
+<img width="468" alt="image" src="https://github.com/rmhayden/crrt/assets/138035971/d1bc0cd5-fd25-4299-a4ae-9949cf0b811d">
 
 
 Key interactive features are highlighted in red (image below), which shows a screenshot of the game's user experience:
